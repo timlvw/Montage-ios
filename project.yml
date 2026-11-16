@@ -1,0 +1,89 @@
+# XcodeGen project: `xcodegen generate` makes MiniGauge.xcodeproj.
+# (The cloud build does this; on a Mac: `brew install xcodegen` first.)
+name: MiniGauge
+options:
+  bundleIdPrefix: com.minigauge
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+targets:
+  MiniGauge:
+    type: application
+    platform: iOS
+    sources:
+      - path: MiniGauge
+      - path: Shared
+    info:
+      path: MiniGauge/Info.plist
+      properties:
+        CFBundleDisplayName: MiniGauge
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSBluetoothAlwaysUsageDescription: MiniGauge connects to your gauge cluster over Bluetooth to show live engine data.
+        UIBackgroundModes:
+          - bluetooth-central
+        NSSupportsLiveActivities: true
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.minigauge.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - target: MiniGaugeWidgets
+  MiniGaugeWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: MiniGaugeWidgets
+      - path: Shared
+    info:
+      path: MiniGaugeWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: MiniGauge
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.minigauge.app.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        SKIP_INSTALL: YES
+  MiniGaugeTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: MiniGaugeTests
+    dependencies:
+      - target: MiniGauge
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.minigauge.app.tests
+schemes:
+  MiniGauge:
+    build:
+      targets:
+        MiniGauge: all
+    test:
+      targets:
+        - MiniGaugeTests

@@ -1,0 +1,113 @@
+# Builds the app on a GitHub Mac on every push:
+#   1. unit tests in the simulator (the wire protocol against the firmware's own frames, dyno maths)
+#   2. screenshots of the app running on demo data
+#   3. an unsigned MiniGauge.ipa to install with Sideloadly (it signs it with your Apple ID)
+# Everything (ipa, screenshots, logs) is also pushed to the `builds` branch.
+name: iOS build
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pick the newest Xcode
+        run: |
+          X=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$X"
+          xcodebuild -version
+          mkdir -p out/logs out/shots
+
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Pick a simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c "
+          import json, sys
+          d = json.load(sys.stdin)['devices']
+          best = None
+          for rt, devs in d.items():
+              if 'iOS' not in rt: continue
+              for x in devs:
+                  if x['name'].startswith('iPhone') and 'Pro' in x['name']:
+                      best = (rt, x['udid'])
+          print(best[1] if best else '')
+          ")
+          echo "UDID=$UDID" >> $GITHUB_ENV
+          xcrun simctl list devices available | grep "$UDID"
+
+      - name: Unit tests
+        run: |
+          set -o pipefail
+          xcodebuild test -project MiniGauge.xcodeproj -scheme MiniGauge -destination "id=$UDID" \
+            -derivedDataPath build/sim CODE_SIGNING_ALLOWED=NO 2>&1 | tee out/logs/test.log | grep -E "error:|warning:|Test Case|Executed|\*\* TEST" || true
+          grep -q "\*\* TEST SUCCEEDED \*\*" out/logs/test.log
+
+      - name: Screenshots (demo data)
+        if: always()
+        run: |
+          APP=$(ls -d build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app 2>/dev/null || true)
+          if [ -z "$APP" ]; then echo "no simulator build"; exit 0; fi
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          xcrun simctl status_bar "$UDID" override --time "9:41" --batteryState charged --batteryLevel 100 || true
+          xcrun simctl install "$UDID" "$APP"
+          for TAB in 0 1 2 3 4; do
+            xcrun simctl launch "$UDID" com.minigauge.app -demo -tab $TAB
+            sleep 8
+            xcrun simctl io "$UDID" screenshot "out/shots/tab$TAB.png"
+            xcrun simctl terminate "$UDID" com.minigauge.app || true
+          done
+
+      - name: Device build (unsigned)
+        if: always()
+        run: |
+          set -o pipefail
+          xcodebuild build -project MiniGauge.xcodeproj -scheme MiniGauge -configuration Release -sdk iphoneos \
+            -derivedDataPath build/dev CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee out/logs/device.log | grep -E "error:|warning:|\*\* BUILD" || true
+          grep -q "\*\* BUILD SUCCEEDED \*\*" out/logs/device.log
+          mkdir -p Payload
+          cp -R build/dev/Build/Products/Release-iphoneos/MiniGauge.app Payload/
+          ls Payload/MiniGauge.app/PlugIns
+          zip -qry out/MiniGauge.ipa Payload
+          ls -l out/MiniGauge.ipa
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "commit ${GITHUB_SHA}"
+            echo "xcode $(xcodebuild -version | head -1)"
+            echo "tests: $(grep -c 'passed' out/logs/test.log 2>/dev/null || echo 0) passed, $(grep -c 'failed' out/logs/test.log 2>/dev/null || echo 0) failed"
+            grep -q "TEST SUCCEEDED" out/logs/test.log 2>/dev/null && echo "TESTS OK" || echo "TESTS FAILED"
+            grep -q "BUILD SUCCEEDED" out/logs/device.log 2>/dev/null && echo "DEVICE BUILD OK" || echo "DEVICE BUILD FAILED"
+            echo "--- errors ---"
+            grep -h "error:" out/logs/*.log 2>/dev/null | sort -u | head -80
+          } > out/SUMMARY.txt
+          cat out/SUMMARY.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: MiniGauge-${{ github.run_number }}
+          path: out
+
+      - name: Push results to the builds branch
+        if: always()
+        run: |
+          cd out
+          git init -q
+          git checkout -q -b builds
+          git add -A
+          git -c user.name="MiniGauge CI" -c user.email="ci@users.noreply.github.com" commit -qm "build ${GITHUB_SHA::7} (run ${{ github.run_number }})"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" builds
