@@ -4,7 +4,7 @@ import Foundation
 /// CarPlay). Plain Foundation.
 enum Metric: String, CaseIterable, Codable, Identifiable {
     case boost, rpm, speed, gear, coolant, intake, battery, throttle, pedal, load
-    case fuel, economy, slip, injDuty, ignSpread, scRatio, alternator, lambda, o2Up
+    case fuel, economy, slip, injDuty, ignSpread, scRatio, fuelLevel, lambda, o2Up
 
     var id: String { rawValue }
 
@@ -26,7 +26,7 @@ enum Metric: String, CaseIterable, Codable, Identifiable {
         case .injDuty: return "Inj. duty"
         case .ignSpread: return "Ign. spread"
         case .scRatio: return "S/C ratio"
-        case .alternator: return "Alternator"
+        case .fuelLevel: return "Fuel tank"
         case .lambda: return "Lambda corr."
         case .o2Up: return "O2 up"
         }
@@ -44,7 +44,7 @@ enum Metric: String, CaseIterable, Codable, Identifiable {
         case .injDuty: return "DUTY"
         case .ignSpread: return "KNOCK"
         case .scRatio: return "S/C"
-        case .alternator: return "ALT"
+        case .fuelLevel: return "TANK"
         case .lambda: return "LAMBDA"
         default: return label.uppercased()
         }
@@ -99,7 +99,9 @@ struct Snapshot {
         case .injDuty: return Reading(value: Fmt.num(e[.injDuty], 0), unit: "%")
         case .ignSpread: return Reading(value: Fmt.num(e.ignitionSpread, 1), unit: "°")
         case .scRatio: return Reading(value: Fmt.num(e.scRatio, 2), unit: "")
-        case .alternator: return Reading(value: Fmt.num(e[.alternator], 0), unit: "%")
+        case .fuelLevel:
+            guard let l = e[.fuelLevel] else { return Reading(value: "--", unit: units.psi ? "gal" : "L") }
+            return units.psi ? Reading(value: Fmt.num(l * 0.264172, 1), unit: "gal") : Reading(value: Fmt.num(l, 0), unit: "L")
         case .lambda: return Reading(value: Fmt.num(e[.lambda], 1), unit: "%")
         case .o2Up: return Reading(value: Fmt.num(e[.o2Up].map { $0 / 1000 }, 2), unit: "V")
         }

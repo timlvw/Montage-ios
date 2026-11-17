@@ -127,6 +127,7 @@ final class GaugeStore: ObservableObject {
     }
 
     func linkReady() {
+        send(Self.timeCommand())          // the gauge has no clock battery: set it on every connect
         send("info")
         if autoLog && !logging { toggleLogging() }
     }
@@ -195,6 +196,8 @@ final class GaugeStore: ObservableObject {
             if !carBusy { carPoll?.invalidate() }
         case "dynocsv":
             dynoCSV = body
+        case _ where cmd.hasPrefix("time "):
+            break                             // clock set; nothing to show
         default:
             if cmd.hasPrefix("car ") {
                 if body == "started" { startCarPoll() } else { lastNotice = "Gauge: \(body)" }
@@ -205,6 +208,12 @@ final class GaugeStore: ObservableObject {
     }
 
     // MARK: - commands
+
+    /// "time Y M D h m s" in local time, as the gauge's web page sends it.
+    static func timeCommand(_ date: Date = Date()) -> String {
+        let c = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        return "time \(c.year ?? 2026) \(c.month ?? 1) \(c.day ?? 1) \(c.hour ?? 0) \(c.minute ?? 0) \(c.second ?? 0)"
+    }
 
     @discardableResult
     func send(_ cmd: String) -> Bool {

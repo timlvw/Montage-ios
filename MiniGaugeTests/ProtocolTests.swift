@@ -42,7 +42,7 @@ final class ProtocolTests: XCTestCase {
         XCTAssertEqual(e[.knock], 1245)
         XCTAssertEqual(e[.fuel]!, 28.4, accuracy: 0.001)
         XCTAssertEqual(e[.lambda]!, -1.5, accuracy: 0.001)
-        XCTAssertEqual(e[.alternator]!, 42, accuracy: 0.001)
+        XCTAssertEqual(e[.fuelLevel]!, 42, accuracy: 0.001)
         XCTAssertNil(e[.ign2])
         XCTAssertNil(e[.slip])
         XCTAssertEqual(e.values.count, 15)

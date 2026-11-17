@@ -50,7 +50,7 @@ struct EngineView: View {
                     row("Coolant", m(.coolant))
                     row("Intake air", m(.intake))
                     row("Battery", m(.battery))
-                    row("Alternator load", m(.alternator))
+                    row("Fuel in the tank", m(.fuelLevel))
                 }
                 Section("Link") {
                     row("Mode", Reading(value: store.engine.link.title, unit: ""))

@@ -51,7 +51,7 @@ struct DemoSource {
             .ret1: 0, .ret2: 0.4, .ret3: knockCyl3 ? 3 : 0, .ret4: 0,
             .knock: pull ? 1240 : 400, .slip: pull && gear == 1 ? 8.5 : 0.4,
             .wheelFL: kph * 1.01, .wheelFR: kph * 1.01, .fuel: fuel, .injDuty: pull ? 71 : 9, .injMs: pull ? 10.0 : 2.6,
-            .airflow: pull ? 410 : 22, .lambda: -1.5, .trim: 3.0, .alternator: 42,
+            .airflow: pull ? 410 : 22, .lambda: -1.5, .trim: 3.0, .fuelLevel: 34,
         ]
         let gauges = [
             GaugeSlotValue(slot: 0, pid: 0x0C, valid: true, warn: rpm > 6500, critical: false, value: rpm.rounded(), ageMs: 80),

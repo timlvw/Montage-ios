@@ -32,7 +32,7 @@ enum LinkLevel: UInt8 {
 enum Field: Int, CaseIterable {
     case rpm = 0, speed, gear, map, mapPre, coolant, intake, throttle, pedal, battery, load, o2Up, o2Down
     case ign1, ign2, ign3, ign4, ret1, ret2, ret3, ret4
-    case knock, slip, wheelFL, wheelFR, fuel, injDuty, injMs, airflow, lambda, trim, alternator
+    case knock, slip, wheelFL, wheelFR, fuel, injDuty, injMs, airflow, lambda, trim, fuelLevel   // fuelLevel: L, was alternator load
 
     /// The factor the int16 on the wire carries.
     var factor: Double {
@@ -77,7 +77,7 @@ enum Field: Int, CaseIterable {
         case .airflow: return "airflow_kgh"
         case .lambda: return "lambda_corr_pct"
         case .trim: return "fuel_trim_pct"
-        case .alternator: return "alt_load_pct"
+        case .fuelLevel: return "fuel_level_l"
         }
     }
 }

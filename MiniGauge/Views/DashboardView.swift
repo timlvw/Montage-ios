@@ -27,7 +27,7 @@ struct DashboardView: View {
                         MetricTile(metric: .battery)
                         ValueTile(label: "Thr / pedal", reading: throttlePedal, size: 22)
                         ValueTile(label: "O2 up / dn", reading: o2, size: 22)
-                        ValueTile(label: "Trim / alt", reading: trimAlt, size: 22)
+                        MetricTile(metric: .fuelLevel)
                     }
                     footer
                 }
@@ -87,11 +87,6 @@ struct DashboardView: View {
 
     private var o2: Reading {
         Reading(value: "\(Fmt.num(store.engine[.o2Up].map { $0 / 1000 }, 2))/\(Fmt.num(store.engine[.o2Down].map { $0 / 1000 }, 2))", unit: "V")
-    }
-
-    private var trimAlt: Reading {
-        let t = store.engine[.trim].map { String(format: "%+.1f", $0) } ?? "--"
-        return Reading(value: "\(t)/\(Fmt.num(store.engine[.alternator], 0))", unit: "%")
     }
 
     private var footer: some View {
