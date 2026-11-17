@@ -8,11 +8,17 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      runner:
+        description: "GitHub Mac to build on (macos-15-intel, macos-15, macos-14)"
+        default: macos-15-intel
 permissions:
   contents: write
 jobs:
   build:
-    runs-on: macos-15
+    # Apple-silicon Macs (macos-15) were too busy to start a job on 2026-11-17;
+    # the Intel ones build the same app. Run it by hand to pick another.
+    runs-on: ${{ inputs.runner || 'macos-15-intel' }}
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
