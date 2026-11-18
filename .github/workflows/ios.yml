@@ -73,6 +73,12 @@ jobs:
             xcrun simctl io "$UDID" screenshot "out/shots/tab$TAB.png"
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
+          for SCREEN in files gaugeSettings layout dyno; do
+            xcrun simctl launch "$UDID" com.minigauge.app -demo -tab 4 -screen $SCREEN
+            sleep 8
+            xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN.png"
+            xcrun simctl terminate "$UDID" com.minigauge.app || true
+          done
 
       - name: Device build (unsigned)
         if: always()

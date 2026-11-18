@@ -89,3 +89,37 @@ struct DemoSource {
       coolant 30.8 C, intake 13.5 C, MAP 98.9 kPa, before s/c 99.0 kPa (ratio 1.00)
     """
 }
+
+// Demo replies for the settings, layout and file screens (no gauge needed).
+extension DemoSource {
+    static func adminReply(_ cmd: String) -> String? {
+        switch cmd {
+        case "settings":
+            return #"{"tempF":true,"speedMph":true,"pressPsi":true,"logAuto":true,"logActive":true,"logFile":"log_20261118-071502.csv","recOn":true,"recActive":true,"recFile":"drive_20261118-071455.txt","engine":true,"transport":1,"klproto":0,"klmode":"BMW (KWP2000)","klpins":0,"klpinsNow":0,"freeKB":5210,"totalKB":10048}"#
+        case "config":
+            return #"{"apMode":true,"ssid":"","tempF":true,"speedMph":true,"pressPsi":true,"slots":["# +
+                #"{"en":true,"pid":12,"min":0.0,"max":8000.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":6800.0,"to":8000.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
+                #"{"en":true,"pid":225,"min":-15.0,"max":15.0,"ticks":7,"major":1,"dec":1,"label":"Boost","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":13.0,"to":15.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
+                #"{"en":true,"pid":5,"min":104.0,"max":266.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":230.0,"to":266.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
+                #"{"en":true,"pid":15,"min":32.0,"max":212.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":false,"from":0.0,"to":0.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]}"# +
+                #"],"combo":[0,1,2,3]}"#
+        case "pids":
+            return #"[{"pid":12,"key":"rpm","name":"Engine RPM","unit":"rpm","min":0,"max":8000,"sup":true},{"pid":13,"key":"speedkph","name":"Speed","unit":"mph","min":0,"max":160,"sup":true},{"pid":5,"key":"coolant","name":"Coolant Temp","unit":"F","min":40,"max":130,"sup":true},{"pid":15,"key":"iat","name":"Intake Air Temp","unit":"F","min":-20,"max":80,"sup":true},{"pid":225,"key":"boost","name":"S/C Boost","unit":"psi","min":-100,"max":100,"sup":true},{"pid":237,"key":"fueltank","name":"Fuel in Tank","unit":"gal","min":0,"max":50,"sup":true}]"#
+        case "themes":
+            return #"[{"t":0,"n":"Night","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF"}]"#
+        case "files":
+            return #"{"freeKB":5210,"totalKB":10048,"files":[{"n":"drive_20261118-071455.txt","s":1934211,"busy":"rec"},{"n":"log_20261118-071502.csv","s":402113,"busy":"log"},{"n":"drive_20261117-162205.txt","s":787712,"busy":""},{"n":"log_20261117-164524.csv","s":397926,"busy":""},{"n":"dyno_20261117-165012.csv","s":9411,"busy":""},{"n":"dyno_20261117-164801.csv","s":10212,"busy":""}]}"#
+        case "dynocar":
+            return #"{"mass":1300,"cda":0.680,"crr":0.0120,"loss":15.0}"#
+        default:
+            if cmd.hasPrefix("fget ") {
+                let csv = "t_ms,rpm,vs10,wh10,map10,ax100,gear\n" + (0..<120).map { i in
+                    let rpm = 2000 + i * 38
+                    return "\(i * 70),\(rpm),\(Int(Double(rpm) / 47.9 * 10)),\(Int(Double(rpm) / 47.9 * 10 + 3)),\(1300 + i * 4),\(32 - i / 8),3"
+                }.joined(separator: "\n") + "\n"
+                return "\(csv.utf8.count)\n" + csv
+            }
+            return "ok"
+        }
+    }
+}

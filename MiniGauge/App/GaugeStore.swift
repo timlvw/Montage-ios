@@ -49,7 +49,7 @@ final class GaugeStore: ObservableObject {
     @Published var liveActivityOn: Bool { didSet { save("liveActivityOn", liveActivityOn); if !liveActivityOn { activity.end() } } }
     @Published var activityMetrics: [Metric] { didSet { save("activityMetrics", activityMetrics.map(\.rawValue)) } }
     @Published var keepAwake: Bool { didSet { save("keepAwake", keepAwake); applyIdleTimer() } }
-    @Published var autoLog: Bool { didSet { save("autoLog", autoLog) } }
+    @Published var autoLog: Bool { didSet { save("autoLog", autoLog) } }      // record a trip log while the engine runs
     @Published var demoMode: Bool { didSet { save("demoMode", demoMode); restartSource() } }
     @Published var dyno: DynoSettings { didSet { if let d = try? JSONEncoder().encode(dyno) { UserDefaults.standard.set(d, forKey: "dyno") } } }
     @Published private(set) var logging = false
@@ -63,6 +63,10 @@ final class GaugeStore: ObservableObject {
     private var carPoll: Timer?
     private var lastHist = Date.distantPast
     private var started = false
+    private var engineRun = EngineRunDetector()
+    private var autoOwned = false              // this trip log was started by the engine, so it stops with it
+    private var waiters: [String: [(id: Int, done: (String?) -> Void)]] = [:]
+    private var waiterSeq = 0
 
     private init() {
         let d = UserDefaults.standard
@@ -129,14 +133,19 @@ final class GaugeStore: ObservableObject {
     func linkReady() {
         send(Self.timeCommand())          // the gauge has no clock battery: set it on every connect
         send("info")
-        if autoLog && !logging { toggleLogging() }
+        Task { await syncDynoCar() }
     }
 
     func linkDropped() {
         carBusy = false
         carPoll?.invalidate()
         engine.link = .none
+        engineRun.reset()
+        if autoOwned && logging { toggleLogging() }      // no data any more: close the trip
+        autoOwned = false
         if logging { logger.flush() }
+        for (_, ws) in waiters { for w in ws { w.done(nil) } }
+        waiters = [:]
         activity.update(activityState())
     }
 
@@ -166,6 +175,7 @@ final class GaugeStore: ObservableObject {
                 if let b = boost.boost(e) { boostHistory.append(b); if boostHistory.count > 240 { boostHistory.removeFirst() } }
                 if let r = e[.rpm] { rpmHistory.append(r); if rpmHistory.count > 240 { rpmHistory.removeFirst() } }
             }
+            followEngine(e[.rpm], at: now)
             if logging { logger.add(e, boostKpa: boost.boost(e)) }
             if liveActivityOn {
                 let st = activityState()
@@ -182,6 +192,12 @@ final class GaugeStore: ObservableObject {
         let parts = text.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
         let cmd = parts.first.map(String.init) ?? ""
         let body = parts.count > 1 ? String(parts[1]) : ""
+        if let ws = waiters.removeValue(forKey: cmd) {
+            for w in ws { w.done(body) }
+            return                                  // asked for by request(): the caller shows the result
+        }
+        // a late reply to a request that already gave up: nothing to show
+        if Self.requestPrefixes.contains(where: { cmd.hasPrefix($0) }) { return }
         switch cmd {
         case "info":
             if let i = GaugeInfo.parse(body) { info = i }
@@ -208,6 +224,9 @@ final class GaugeStore: ObservableObject {
     }
 
     // MARK: - commands
+
+    private static let requestPrefixes = ["fget ", "fdel ", "set ", "slot ", "combo ", "theme ", "dynocar", "settings", "config",
+                                          "pids", "themes", "files", "log start", "log stop", "codes clear", "restart"]
 
     /// "time Y M D h m s" in local time, as the gauge's web page sends it.
     static func timeCommand(_ date: Date = Date()) -> String {
@@ -242,15 +261,123 @@ final class GaugeStore: ObservableObject {
     }
 
     func readCodes() { send("codes") }
+    @MainActor
+    func clearCodes() async -> String? { await act("codes clear") }
 
     func clearNotice() { lastNotice = "" }
 
     // MARK: - logging
 
     func toggleLogging() {
+        autoOwned = false
         if logger.isRunning { logger.stop(); logging = false }
         else { logger.start(); logging = true }
     }
+
+    /// Automatic trip logs: one per engine run, like the gauge's own log.
+    private func followEngine(_ rpm: Double?, at now: Date) {
+        if demoMode { return }
+        switch engineRun.update(rpm: rpm, at: now) {
+        case .started?:
+            if autoLog && !logging { logger.start(); logging = true; autoOwned = true }
+        case .stopped?:
+            if autoOwned && logging { logger.stop(); logging = false }
+            autoOwned = false
+        case nil: break
+        }
+    }
+
+    // MARK: - requests (settings, layout, files: gauge_admin on the gauge)
+
+    /// Send a command and wait for its reply body (nil: not connected, or no
+    /// reply in time). The gauge answers each command with the command itself
+    /// on the first line, which is how the reply finds its way back here.
+    @MainActor
+    func request(_ cmd: String, timeout: TimeInterval = 6) async -> String? {
+        if demoMode { return DemoSource.adminReply(cmd) }
+        return await withCheckedContinuation { (cont: CheckedContinuation<String?, Never>) in
+            waiterSeq += 1
+            let id = waiterSeq
+            var finished = false
+            let done: (String?) -> Void = { r in
+                if finished { return }
+                finished = true
+                cont.resume(returning: r)
+            }
+            waiters[cmd, default: []].append((id, done))
+            if !link.send(cmd) {
+                waiters[cmd]?.removeAll { $0.id == id }
+                done(nil)
+                return
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
+                guard let self = self, let i = self.waiters[cmd]?.firstIndex(where: { $0.id == id }) else { return }
+                let w = self.waiters[cmd]!.remove(at: i)
+                if self.waiters[cmd]?.isEmpty == true { self.waiters[cmd] = nil }
+                w.done(nil)
+            }
+        }
+    }
+
+    /// An action ("set ...", "slot ..."): nil when it worked, else why not.
+    @MainActor
+    func act(_ cmd: String) async -> String? { AdminReply.error(await request(cmd)) }
+
+    @MainActor
+    func fetch<T: Decodable>(_ type: T.Type, _ cmd: String) async -> T? { AdminReply.decode(type, await request(cmd)) }
+
+    /// Copy a file from the gauge into Documents/Gauge (shown in the Files app).
+    @MainActor
+    func download(_ f: GaugeFile, progress: @escaping (Double) -> Void) async -> Result<URL, DownloadError> {
+        var data = Data()
+        var total = f.s
+        while true {
+            var chunk: (total: Int, data: Data)?
+            for _ in 0..<3 {                                 // a lost Bluetooth chunk drops a reply: ask again
+                if let body = await request("fget \(f.n) \(data.count)", timeout: 8) {
+                    if let c = FileChunk.parse(body) { chunk = c; break }
+                    return .failure(.gauge(AdminReply.error(body) ?? body))
+                }
+            }
+            guard let c = chunk else { return .failure(.noReply) }
+            total = c.total
+            if c.data.isEmpty { break }
+            data.append(c.data)
+            progress(total > 0 ? min(Double(data.count) / Double(total), 1) : 1)
+            if data.count >= total { break }
+        }
+        let url = Self.downloadFolder.appendingPathComponent(f.n)
+        do { try data.write(to: url, options: .atomic) } catch { return .failure(.save(error.localizedDescription)) }
+        return .success(url)
+    }
+
+    enum DownloadError: Error, Equatable {
+        case noReply, gauge(String), save(String)
+        var text: String {
+            switch self {
+            case .noReply: return "The gauge stopped answering."
+            case .gauge(let s): return s
+            case .save(let s): return "Couldn't save it: \(s)"
+            }
+        }
+    }
+
+    static var downloadFolder: URL {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let dir = docs.appendingPathComponent("Gauge", isDirectory: true)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir
+    }
+
+    /// Dyno car settings live on the gauge (the web page uses them too); the
+    /// app keeps a copy for when it isn't connected.
+    @MainActor
+    func syncDynoCar() async {
+        if let c = await fetch(DynoCarSettings.self, "dynocar"), c.settings != dyno { dyno = c.settings }
+    }
+
+    @MainActor
+    func pushDynoCar() async -> String? { await act(DynoCarSettings(dyno).command) }
 
     // MARK: - Live Activity
 

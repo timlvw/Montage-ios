@@ -2,21 +2,38 @@ import SwiftUI
 import Charts
 import Combine
 
+enum MoreRoute: String, Hashable {
+    case dyno, logs, raw, klog, files, gaugeSettings, layout, activity, settings
+}
+
 struct MoreView: View {
     @EnvironmentObject var store: GaugeStore
+    @State private var path: [MoreRoute] = Self.initialPath
+
+    // For the cloud build's screenshots: -screen <route> opens that page.
+    private static var initialPath: [MoreRoute] {
+        let a = ProcessInfo.processInfo.arguments
+        if let i = a.firstIndex(of: "-screen"), i + 1 < a.count, let r = MoreRoute(rawValue: a[i + 1]) { return [r] }
+        return []
+    }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
-                    NavigationLink { DynoView() } label: { Label("Dyno", systemImage: "speedometer") }
-                    NavigationLink { LogsView() } label: { Label("Trip logs", systemImage: "doc.text") }
-                    NavigationLink { TextPage(title: "Raw blocks", command: "raw") } label: { Label("Raw blocks", systemImage: "number") }
-                    NavigationLink { TextPage(title: "K-line log", command: "log") } label: { Label("K-line log", systemImage: "list.bullet.rectangle") }
+                    NavigationLink(value: MoreRoute.dyno) { Label("Dyno", systemImage: "speedometer") }
+                    NavigationLink(value: MoreRoute.logs) { Label("Trip logs (this phone)", systemImage: "doc.text") }
+                    NavigationLink(value: MoreRoute.raw) { Label("Raw blocks", systemImage: "number") }
+                    NavigationLink(value: MoreRoute.klog) { Label("K-line log", systemImage: "list.bullet.rectangle") }
+                }
+                Section("On the gauge") {
+                    NavigationLink(value: MoreRoute.files) { Label("Gauge files", systemImage: "externaldrive") }
+                    NavigationLink(value: MoreRoute.gaugeSettings) { Label("Gauge settings", systemImage: "slider.horizontal.3") }
+                    NavigationLink(value: MoreRoute.layout) { Label("Gauge layout", systemImage: "square.grid.2x2") }
                 }
                 Section {
-                    NavigationLink { LiveActivitySettings() } label: { Label("Lock Screen & CarPlay", systemImage: "car") }
-                    NavigationLink { SettingsView() } label: { Label("Settings", systemImage: "gearshape") }
+                    NavigationLink(value: MoreRoute.activity) { Label("Lock Screen & CarPlay", systemImage: "car") }
+                    NavigationLink(value: MoreRoute.settings) { Label("App settings", systemImage: "gearshape") }
                 }
                 Section("Gauge") {
                     LabeledContent("Status", value: store.conn.text)
@@ -28,6 +45,19 @@ struct MoreView: View {
                 }
             }
             .navigationTitle("More")
+            .navigationDestination(for: MoreRoute.self) { r in
+                switch r {
+                case .dyno: DynoView()
+                case .logs: LogsView()
+                case .raw: TextPage(title: "Raw blocks", command: "raw")
+                case .klog: TextPage(title: "K-line log", command: "log")
+                case .files: GaugeFilesView()
+                case .gaugeSettings: GaugeSettingsView()
+                case .layout: GaugeLayoutView()
+                case .activity: LiveActivitySettings()
+                case .settings: SettingsView()
+                }
+            }
         }
     }
 }
@@ -71,9 +101,9 @@ struct LogsView: View {
         List {
             Section {
                 Toggle("Record this trip", isOn: Binding(get: { store.logging }, set: { _ in store.toggleLogging(); reload() }))
-                Toggle("Start recording when connected", isOn: $store.autoLog)
+                Toggle("Record automatically while the engine runs", isOn: $store.autoLog)
             } footer: {
-                Text("One CSV per trip, 5 rows a second, every value the gauge sends. Also in the Files app under MiniGauge.")
+                Text("One CSV per engine run (it ends 30 s after the engine stops), 5 rows a second, every value the gauge sends. Also in the Files app under MiniGauge. The gauge keeps its own logs too: More → Gauge files.")
             }
             Section("Saved") {
                 if files.isEmpty { Text("No logs yet.").foregroundStyle(.secondary) }
@@ -110,6 +140,10 @@ struct DynoView: View {
     @State private var note = ""
     @State private var times: [DynoTime] = []
     @State private var fromStop = true
+    @State private var runs: [GaugeFile] = []
+    @State private var loadingRun: String?
+    @State private var shown = ""                  // which run the result is from
+    @State private var push: Task<Void, Never>?
 
     var body: some View {
         List {
@@ -149,23 +183,71 @@ struct DynoView: View {
                 }
             }
             if !note.isEmpty { Section { Text(note).foregroundStyle(.secondary) } }
+            Section {
+                if runs.isEmpty { Text("No saved runs yet.").foregroundStyle(.secondary) }
+                ForEach(runs) { f in
+                    Button {
+                        Task { await open(f) }
+                    } label: {
+                        HStack {
+                            Text(f.title).foregroundStyle(Theme.text)
+                            Spacer()
+                            if loadingRun == f.n { ProgressView() }
+                            else if shown == f.n { Image(systemName: "checkmark").foregroundStyle(Theme.accent) }
+                        }
+                    }
+                }
+            } header: { Text("Saved runs on the gauge") } footer: {
+                Text("Every recorded pull is kept on the gauge, so the web page and the app see the same runs.")
+            }
             if !times.isEmpty {
                 Section("Times from this run") {
                     if !fromStop { Text("0-60 and 0-100 need a run that starts from a stop.").font(.caption).foregroundStyle(.secondary) }
                     ForEach(times) { t in LabeledContent(t.name, value: t.seconds.map { String(format: "%.2f s", $0) } ?? "—") }
                 }
             }
-            Section("Car") {
+            Section {
                 Stepper(value: $store.dyno.massKg, in: 900...2000, step: 10) { LabeledContent("Car + driver", value: "\(Int(store.dyno.massKg)) kg") }
                 Stepper(value: $store.dyno.lossPct, in: 0...30, step: 1) { LabeledContent("Drivetrain loss", value: "\(Int(store.dyno.lossPct)) %") }
                 Stepper(value: $store.dyno.cdA, in: 0.4...1.0, step: 0.01) { LabeledContent("Cd×A", value: String(format: "%.2f m²", store.dyno.cdA)) }
-            }
+            } header: { Text("Car") } footer: { Text("Saved on the gauge: the web page's dyno uses the same numbers.") }
         }
         .navigationTitle("Dyno")
-        .onChange(of: store.dynoCSV) { _, csv in compute(csv) }
-        .onChange(of: store.dyno) { _, _ in compute(store.dynoCSV) }
-        .onChange(of: store.engine.dynoDone) { _, done in if done { store.send("dynocsv") } }
+        .onChange(of: store.dynoCSV) { _, csv in shown = ""; compute(csv) }
+        .onChange(of: store.dyno) { _, _ in
+            compute(store.dynoCSV)
+            push?.cancel()
+            push = Task {                               // settle the steppers, then save on the gauge
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                if !Task.isCancelled { _ = await store.pushDynoCar() }
+            }
+        }
+        .onChange(of: store.engine.dynoDone) { _, done in
+            if done { store.send("dynocsv"); Task { try? await Task.sleep(nanoseconds: 1_500_000_000); await loadRuns() } }
+        }
         .onAppear { if !store.dynoCSV.isEmpty { compute(store.dynoCSV) } }
+        .task {
+            await store.syncDynoCar()
+            await loadRuns()
+            if store.dynoCSV.isEmpty, let latest = runs.first, ProcessInfo.processInfo.arguments.contains("-screen") { await open(latest) }
+        }
+    }
+
+    private func loadRuns() async {
+        if let f = await store.fetch(GaugeFiles.self, "files") {
+            runs = f.files.filter { $0.kind == .dyno }.sorted { $0.sortKey > $1.sortKey }
+        }
+    }
+
+    private func open(_ f: GaugeFile) async {
+        loadingRun = f.n
+        defer { loadingRun = nil }
+        switch await store.download(f, progress: { _ in }) {
+        case .success(let url):
+            if let csv = try? String(contentsOf: url, encoding: .utf8) { compute(csv); shown = f.n }
+        case .failure(let e):
+            note = "\(f.title): \(e.text)"
+        }
     }
 
     private func compute(_ csv: String) {

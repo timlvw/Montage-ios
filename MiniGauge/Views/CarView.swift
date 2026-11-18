@@ -4,6 +4,8 @@ import SwiftUI
 struct CarView: View {
     @EnvironmentObject var store: GaugeStore
     @State private var confirmJob: Int? = nil
+    @State private var confirmClear = false
+    @State private var clearNote = ""
 
     var body: some View {
         NavigationStack {
@@ -77,8 +79,24 @@ struct CarView: View {
             } else {
                 Text("Not read yet.").foregroundStyle(Theme.muted)
             }
-            Button("Read codes") { store.readCodes() }
-                .buttonStyle(.bordered).tint(Theme.accent).padding(.top, 4)
+            HStack {
+                Button("Read codes") { store.readCodes() }
+                    .buttonStyle(.bordered).tint(Theme.accent)
+                Button("Clear codes", role: .destructive) { confirmClear = true }
+                    .buttonStyle(.bordered)
+            }
+            .padding(.top, 4)
+            .confirmationDialog("Clear the stored codes?", isPresented: $confirmClear, titleVisibility: .visible) {
+                Button("Clear codes", role: .destructive) {
+                    Task {
+                        if let e = await store.clearCodes() { clearNote = e }
+                        else { clearNote = "Cleared. Reading them again…"; try? await Task.sleep(nanoseconds: 4_000_000_000); store.readCodes(); clearNote = "" }
+                    }
+                }
+            } message: {
+                Text("Also turns off the check-engine lamp and resets the engine computer's readiness tests. Note the codes first if you want them.")
+            }
+            if !clearNote.isEmpty { Text(clearNote).font(.caption).foregroundStyle(Theme.muted) }
         }
     }
 
