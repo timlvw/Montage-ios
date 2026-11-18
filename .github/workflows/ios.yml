@@ -69,7 +69,7 @@ jobs:
           xcrun simctl install "$UDID" "$APP"
           for TAB in 0 1 2 3 4; do
             xcrun simctl launch "$UDID" com.minigauge.app -demo -tab $TAB
-            sleep 8
+            sleep 15                       # the Intel simulator can take over 8 s to draw the first frame
             xcrun simctl io "$UDID" screenshot "out/shots/tab$TAB.png"
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
