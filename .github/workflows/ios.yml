@@ -74,11 +74,17 @@ jobs:
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
           for SCREEN in files gaugeSettings layout dyno; do
-            xcrun simctl launch "$UDID" com.minigauge.app -demo -tab 4 -screen $SCREEN
+            xcrun simctl launch --stdout="$PWD/out/logs/$SCREEN.out" --stderr="$PWD/out/logs/$SCREEN.err" "$UDID" com.minigauge.app -demo -diag -tab 4 -screen $SCREEN
             sleep 8
             xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN.png"
+            echo "$SCREEN after 8 s: $(xcrun simctl spawn "$UDID" launchctl list | grep -i minigauge || echo 'not running')" >> out/logs/procs.txt
+            sleep 12
+            xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN-20s.png"
+            echo "$SCREEN after 20 s: $(xcrun simctl spawn "$UDID" launchctl list | grep -i minigauge || echo 'not running')" >> out/logs/procs.txt
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
+          ls -t ~/Library/Logs/DiagnosticReports/ 2>/dev/null | grep -i minigauge | head -5 | while read f; do cp "$HOME/Library/Logs/DiagnosticReports/$f" out/logs/ ; done
+          cat out/logs/procs.txt || true
 
       - name: Device build (unsigned)
         if: always()

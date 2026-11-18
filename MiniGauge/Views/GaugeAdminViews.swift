@@ -4,6 +4,20 @@ import UIKit
 // The gauge's own files, settings and layout: the same things its web page
 // offers, through the same functions on the gauge (gauge_admin.cpp).
 
+/// Cloud-build diagnostics: counts body evaluations (a runaway count means an
+/// update loop) and prints what changed, only with -diag.
+enum Diag {
+    static let on = ProcessInfo.processInfo.arguments.contains("-diag")
+    static var counts: [String: Int] = [:]
+    static func body<V: View>(_ name: String, _ t: V.Type) {
+        guard on else { return }
+        let n = (counts[name] ?? 0) + 1
+        counts[name] = n
+        if n <= 20 || n % 500 == 0 { print("[MG] \(name) body #\(n)"); if n <= 20 { V._printChanges() } }
+    }
+    static func note(_ s: String) { if on { print("[MG] " + s) } }
+}
+
 private func kb(_ k: Int) -> String {
     ByteCountFormatter.string(fromByteCount: Int64(k) * 1024, countStyle: .file)
 }
@@ -31,6 +45,7 @@ struct GaugeFilesView: View {
     @State private var confirmDelete: GaugeFile?
 
     var body: some View {
+        let _ = Diag.body("files", Self.self)
         List {
             if let f = files {
                 Section {
@@ -97,8 +112,9 @@ struct GaugeFilesView: View {
     }
 
     private func load() async {
+        Diag.note("files load start")
         loading = true
-        defer { loading = false }
+        defer { loading = false; Diag.note("files load end") }
         if let f = await store.fetch(GaugeFiles.self, "files") {
             files = f
             error = ""
@@ -138,6 +154,7 @@ struct GaugeSettingsView: View {
     @State private var confirmRestart = false
 
     var body: some View {
+        let _ = Diag.body("settings", Self.self)
         Form {
             if let st = s {
                 Section {
@@ -247,6 +264,7 @@ struct GaugeLayoutView: View {
     @StateObject private var m = LayoutModel()
 
     var body: some View {
+        let _ = Diag.body("layout", Self.self)
         List {
             if let c = m.config {
                 Section {
