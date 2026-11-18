@@ -13,9 +13,11 @@ enum Diag {
         guard on else { return }
         let n = (counts[name] ?? 0) + 1
         counts[name] = n
-        if n <= 20 || n % 500 == 0 { print("[MG] \(name) body #\(n)"); if n <= 20 { V._printChanges() } }
+        if n <= 20 || n % 200 == 0 { write("\(name) body #\(n)") }
     }
-    static func note(_ s: String) { if on { print("[MG] " + s) } }
+    static func note(_ s: String) { if on { write(s) } }
+    /// stderr is unbuffered, so the lines survive the app being stopped.
+    private static func write(_ s: String) { FileHandle.standardError.write(Data(("[MG] " + s + "\n").utf8)) }
 }
 
 private func kb(_ k: Int) -> String {
@@ -35,7 +37,9 @@ extension Color {
 // MARK: - files
 
 struct GaugeFilesView: View {
-    @EnvironmentObject var store: GaugeStore
+    // not observed: these pages only ask the gauge, and the live data
+    // (10 updates a second) must not redraw them
+    private var store: GaugeStore { GaugeStore.shared }
     var onOpenDyno: ((String) -> Void)? = nil
     @State private var files: GaugeFiles?
     @State private var loading = false
@@ -148,7 +152,9 @@ struct GaugeFilesView: View {
 // MARK: - settings
 
 struct GaugeSettingsView: View {
-    @EnvironmentObject var store: GaugeStore
+    // not observed: these pages only ask the gauge, and the live data
+    // (10 updates a second) must not redraw them
+    private var store: GaugeStore { GaugeStore.shared }
     @State private var s: GaugeSettings?
     @State private var error = ""
     @State private var confirmRestart = false
@@ -228,6 +234,7 @@ struct GaugeSettingsView: View {
 
 // MARK: - layout
 
+@MainActor
 final class LayoutModel: ObservableObject {
     @Published var config: GaugeConfig?
     @Published var pids: [PidInfo] = []
@@ -242,25 +249,36 @@ final class LayoutModel: ObservableObject {
         return s.label.isEmpty ? name(s.pid) : s.label
     }
 
-    @MainActor func load(_ store: GaugeStore) async {
-        if pids.isEmpty, let p = await store.fetch([PidInfo].self, "pids") { pids = p }
-        if let c = await store.fetch(GaugeConfig.self, "config") { config = c; error = "" }
-        else if config == nil { error = store.isLive ? "The gauge didn't answer. Pull down to try again." : "Not connected to the gauge." }
-        if let t = await store.fetch([ThemeInfo].self, "themes") { themes = t }
+    /// Only what changed is published, so a reload with the same answer
+    /// doesn't redraw the page.
+    func load(_ store: GaugeStore) async {
+        Diag.note("layout load")
+        if pids.isEmpty, let p = await store.fetch([PidInfo].self, "pids"), p != pids { pids = p }
+        if let c = await store.fetch(GaugeConfig.self, "config") {
+            if c != config { config = c }
+            if !error.isEmpty { error = "" }
+        } else if config == nil {
+            let e = store.isLive ? "The gauge didn't answer. Pull down to try again." : "Not connected to the gauge."
+            if e != error { error = e }
+        }
+        if let t = await store.fetch([ThemeInfo].self, "themes"), t != themes { themes = t }
+        Diag.note("layout loaded: \(config?.slots.count ?? -1) gauges, \(pids.count) values, \(themes.count) themes")
     }
 
     /// Run one or more commands, then reload; the gauge redraws by itself.
-    @MainActor func run(_ store: GaugeStore, _ cmds: [String]) async {
+    func run(_ store: GaugeStore, _ cmds: [String]) async {
         var err = ""
         for c in cmds { if let e = await store.act(c) { err = e; break } }
-        error = err
+        if err != error { error = err }
         await load(store)
         store.send("info")
     }
 }
 
 struct GaugeLayoutView: View {
-    @EnvironmentObject var store: GaugeStore
+    // not observed: these pages only ask the gauge, and the live data
+    // (10 updates a second) must not redraw them
+    private var store: GaugeStore { GaugeStore.shared }
     @StateObject private var m = LayoutModel()
 
     var body: some View {
@@ -307,7 +325,13 @@ struct GaugeLayoutView: View {
                     ForEach(0..<4, id: \.self) { q in
                         Picker(["Top left", "Top right", "Bottom left", "Bottom right"][q],
                                selection: Binding(get: { q < c.combo.count ? c.combo[q] : -1 },
-                                                  set: { v in Task { await m.run(store, ["combo q\(q)=\(v)"]) } })) {
+                                                  set: { v in
+                                                      // only a real choice goes to the gauge
+                                                      let now = q < c.combo.count ? c.combo[q] : -1
+                                                      guard v != now else { return }
+                                                      Diag.note("combo q\(q) \(now) -> \(v)")
+                                                      Task { await m.run(store, ["combo q\(q)=\(v)"]) }
+                                                  })) {
                             Text("Empty").tag(-1)
                             ForEach(Array(c.slots.indices), id: \.self) { i in Text(m.slotName(i)).tag(i) }
                         }
@@ -344,7 +368,9 @@ struct GaugeLayoutView: View {
 }
 
 struct SlotEditView: View {
-    @EnvironmentObject var store: GaugeStore
+    // not observed: these pages only ask the gauge, and the live data
+    // (10 updates a second) must not redraw them
+    private var store: GaugeStore { GaugeStore.shared }
     @ObservedObject var m: LayoutModel
     let index: Int
     @State private var edit: SlotConfig?

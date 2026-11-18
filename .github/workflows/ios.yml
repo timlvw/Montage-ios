@@ -74,13 +74,15 @@ jobs:
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
           for SCREEN in files gaugeSettings layout dyno; do
-            xcrun simctl launch --stdout="$PWD/out/logs/$SCREEN.out" --stderr="$PWD/out/logs/$SCREEN.err" "$UDID" com.minigauge.app -demo -diag -tab 4 -screen $SCREEN
-            sleep 8
+            xcrun simctl launch --stderr="$PWD/out/logs/$SCREEN.err" "$UDID" com.minigauge.app -demo -diag -tab 4 -screen $SCREEN
+            sleep 15
             xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN.png"
-            echo "$SCREEN after 8 s: $(xcrun simctl spawn "$UDID" launchctl list | grep -i minigauge || echo 'not running')" >> out/logs/procs.txt
-            sleep 12
-            xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN-20s.png"
-            echo "$SCREEN after 20 s: $(xcrun simctl spawn "$UDID" launchctl list | grep -i minigauge || echo 'not running')" >> out/logs/procs.txt
+            sleep 10
+            xcrun simctl io "$UDID" screenshot "out/shots/$SCREEN-25s.png"
+            PID=$(xcrun simctl spawn "$UDID" launchctl list | grep -i minigauge | awk '{print $1}' | head -1)
+            echo "$SCREEN after 25 s: pid ${PID:-none}" >> out/logs/procs.txt
+            # where the main thread is, in case the page is stuck
+            if [ -n "$PID" ] && [ "$PID" != "-" ]; then sample "$PID" 3 -file "out/logs/$SCREEN.sample.txt" >/dev/null 2>&1 || echo "sample failed" >> out/logs/procs.txt; fi
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
           ls -t ~/Library/Logs/DiagnosticReports/ 2>/dev/null | grep -i minigauge | head -5 | while read f; do cp "$HOME/Library/Logs/DiagnosticReports/$f" out/logs/ ; done
