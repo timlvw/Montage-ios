@@ -13,6 +13,16 @@ final class AdminTests: XCTestCase {
         XCTAssertEqual(s.klproto, 2)
         XCTAssertEqual(s.recFile, "drive_20261118-120000.txt")
         XCTAssertTrue(s.restartNeeded, "wiring saved as header pins, UART in use: needs a restart")
+        XCTAssertNil(s.klpinNames, "older firmware sends no names")
+        XCTAssertEqual(s.wiringName(1), "Header pins (17/18)")
+    }
+
+    func testWiringNamesFromTheLcd21() throws {
+        let j = #"{"tempF":false,"speedMph":false,"pressPsi":false,"logAuto":true,"logActive":false,"logFile":"","recOn":true,"recActive":false,"recFile":"","engine":false,"transport":1,"klproto":0,"klmode":"","klpins":1,"klpinsNow":1,"klpinNames":["UART header RXD / TXD (not with USB-C power)","12-pin header D- / D+"],"freeKB":1,"totalKB":2}"#
+        let s = try XCTUnwrap(AdminReply.decode(GaugeSettings.self, j))
+        XCTAssertEqual(s.wiringName(0), "UART header RXD / TXD (not with USB-C power)")
+        XCTAssertEqual(s.wiringName(1), "12-pin header D- / D+")
+        XCTAssertFalse(s.restartNeeded)
     }
 
     func testConfigWithEscapedLabel() throws {

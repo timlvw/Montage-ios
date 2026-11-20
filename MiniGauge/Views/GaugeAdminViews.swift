@@ -189,8 +189,8 @@ struct GaugeSettingsView: View {
                         Text("BMW only").tag(2)
                     }
                     Picker("Wiring", selection: Binding(get: { st.klpins }, set: { v in set("klpins=\(v)") })) {
-                        Text("UART connector (RXD/TXD)").tag(0)
-                        Text("Header pins (17/18)").tag(1)
+                        Text(st.wiringName(0)).tag(0)
+                        Text(st.wiringName(1)).tag(1)
                     }
                     if !st.klmode.isEmpty { LabeledContent("Talking", value: st.klmode) }
                     if st.restartNeeded {

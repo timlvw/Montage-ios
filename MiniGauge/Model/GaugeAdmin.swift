@@ -21,10 +21,18 @@ struct GaugeSettings: Codable, Equatable {
     var klmode = ""
     var klpins = 0             // saved: 0 UART connector, 1 header pins
     var klpinsNow = 0          // in use this boot (-1 = not in K-line mode)
+    var klpinNames: [String]? = nil   // the two wiring choices as this board names them (older firmware: absent)
     var freeKB = 0
     var totalKB = 0
 
     var restartNeeded: Bool { transport == 1 && klpinsNow >= 0 && klpins != klpinsNow }
+
+    /// Menu text for wiring choice 0 / 1: the gauge's own names when it sends
+    /// them (the LCD 2.1's pins differ), else the AMOLED boards'.
+    func wiringName(_ i: Int) -> String {
+        if let n = klpinNames, i >= 0, i < n.count, !n[i].isEmpty { return n[i] }
+        return i == 0 ? "UART connector (RXD/TXD)" : "Header pins (17/18)"
+    }
 }
 
 struct ZoneConfig: Codable, Equatable {
