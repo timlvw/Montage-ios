@@ -104,6 +104,7 @@ struct GaugeSlotValue: Equatable, Identifiable {
     var critical: Bool
     var value: Double          // display units, as on the gauge
     var ageMs: Int?            // nil = never read
+    var zone: Int? = nil       // the zone the value is in, by its index on the gauge (v5.12+)
     var id: Int { slot }
 }
 
@@ -208,8 +209,10 @@ enum FrameDecoder {
             let slot = Int(r.u8()), pid = Int(r.u8()), flags = r.u8()
             let v = Double(r.f32())
             let age = r.u16()
+            let zb = Int((flags & 0x70) >> 4)          // zone + 1, 0 = none (v5.12+)
             out.append(GaugeSlotValue(slot: slot, pid: pid, valid: flags & 1 != 0, warn: flags & 2 != 0,
-                                      critical: flags & 4 != 0, value: v, ageMs: age == 65535 ? nil : Int(age)))
+                                      critical: flags & 4 != 0, value: v, ageMs: age == 65535 ? nil : Int(age),
+                                      zone: zb == 0 ? nil : zb - 1))
         }
         return out
     }
@@ -269,7 +272,11 @@ struct TextReassembler {
 
 struct GaugeInfo: Codable, Equatable {
     struct Units: Codable, Equatable { var tempF: Bool; var mph: Bool; var psi: Bool }
-    struct Zone: Codable, Equatable { var from: Double; var to: Double; var crit: Bool; var color: String }
+    struct Zone: Codable, Equatable {
+        var from: Double; var to: Double; var crit: Bool; var color: String
+        var z: Int? = nil      // the zone's index on the gauge (v5.12+)
+        var al: Int? = nil     // 0 colour only, 1 warning, 2 critical (v5.12+)
+    }
     struct Slot: Codable, Equatable, Identifiable {
         var i: Int
         var pid: Int

@@ -44,6 +44,17 @@ struct ZoneConfig: Codable, Equatable {
     var from: Double
     var to: Double
     var col: String
+    var al: Int? = nil        // 0 colour only, 1 warning, 2 critical (firmware before v5.12: absent)
+}
+
+extension SlotConfig {
+    /// Zones in use: the gauge keeps the ones that are on packed at the front.
+    var zoneCount: Int {
+        get { z.filter(\.on).count }
+        set { for k in z.indices { z[k].on = k < newValue } }
+    }
+    /// Firmware before v5.12 had no per-zone alarm: zone 1 was critical, zone 2 warning.
+    func alarm(_ k: Int) -> Int { z[k].al ?? (k == 0 ? 2 : 1) }
 }
 
 struct SlotConfig: Codable, Equatable {

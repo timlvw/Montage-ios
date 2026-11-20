@@ -38,6 +38,23 @@ final class AdminTests: XCTestCase {
         XCTAssertFalse(old.wifiRestartNeeded)
     }
 
+    func testFourZones() throws {
+        // gauge_admin.cpp's host test after "zones=3&z1al=1&z2al=0 ..." (v5.12)
+        let j = #"{"apMode":false,"ssid":"","tempF":true,"speedMph":false,"pressPsi":false,"slots":[{"en":true,"pid":5,"min":40.0,"max":130.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"00FF00","bg":"000000","text":"000000","arc":"000000","emcol":"000000","z":[{"on":true,"from":110.0,"to":130.0,"col":"FF0000","al":2},{"on":true,"from":100.0,"to":110.0,"col":"FFB020","al":1},{"on":true,"from":40.0,"to":70.0,"col":"3A8DFF","al":0},{"on":false,"from":0.0,"to":0.0,"col":"3A8DFF","al":0}]}],"combo":[0,-1,-1,-1]}"#
+        var c = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, j))
+        XCTAssertEqual(c.slots[0].z.count, 4)
+        XCTAssertEqual(c.slots[0].zoneCount, 3)
+        XCTAssertEqual(c.slots[0].alarm(2), 0)
+        c.slots[0].zoneCount = 1
+        XCTAssertEqual(c.slots[0].z.map(\.on), [true, false, false, false])
+        XCTAssertEqual(c.slots[0].z[2].from, 40, "fewer zones keeps their values")
+        // older firmware: two zones, no alarm field
+        let old = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, #"{"apMode":false,"ssid":"","tempF":true,"speedMph":false,"pressPsi":false,"slots":[{"en":true,"pid":5,"min":40.0,"max":130.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"00FF00","bg":"000000","text":"000000","arc":"000000","emcol":"000000","z":[{"on":true,"from":110.0,"to":130.0,"col":"FF0000"},{"on":true,"from":100.0,"to":110.0,"col":"FFB020"}]}],"combo":[0,-1,-1,-1]}"#))
+        XCTAssertNil(old.slots[0].z[0].al)
+        XCTAssertEqual(old.slots[0].alarm(0), 2)
+        XCTAssertEqual(old.slots[0].alarm(1), 1)
+    }
+
     func testConfigWithEscapedLabel() throws {
         let j = #"{"apMode":false,"ssid":"","tempF":true,"speedMph":false,"pressPsi":false,"slots":[{"en":true,"pid":5,"min":40.0,"max":130.0,"ticks":9,"major":2,"dec":-1,"label":"Water \"temp\"","emblem":0,"emtext":"","needle":"00FF00","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":110.0,"to":130.0,"col":"FF0000"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]}],"combo":[0,-1,-1,-1]}"#
         let c = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, j))

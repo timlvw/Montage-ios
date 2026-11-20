@@ -167,7 +167,11 @@ struct ArcGauge: View {
     var body: some View {
         let mn = slot?.min ?? 0, mx = max(slot?.max ?? 100, mn + 1)
         let frac = value.map { min(max(($0.value - mn) / (mx - mn), 0), 1) } ?? 0
-        let col: Color = (value?.critical ?? false) ? Theme.danger : (value?.warn ?? false) ? Theme.warn : Theme.accent
+        // The colour of the zone the value is in, as on the gauge (v5.12+);
+        // older firmware only says warning / critical.
+        let zoneCol: Color? = value.flatMap { v in v.zone.flatMap { zi in
+            (slot?.zones ?? []).enumerated().first { ($0.element.z ?? $0.offset) == zi }.map { Color(hex: $0.element.color) } } }
+        let col: Color = zoneCol ?? ((value?.critical ?? false) ? Theme.danger : (value?.warn ?? false) ? Theme.warn : Theme.accent)
         let dec = slot?.d ?? 0
         Card {
             VStack(spacing: 2) {

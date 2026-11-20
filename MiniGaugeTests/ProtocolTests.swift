@@ -48,6 +48,16 @@ final class ProtocolTests: XCTestCase {
         XCTAssertEqual(e.values.count, 15)
     }
 
+    func testGaugesZoneIndex() throws {
+        // v5.12: flags bits 4-6 carry the zone the value is in, + 1
+        guard case .gauges(let g) = try FrameDecoder.decode(Self.hex("0202000c2300d0cf45780003050000000000ffff")) else { return XCTFail("not gauges") }
+        XCTAssertTrue(g[0].valid && g[0].warn && !g[0].critical)
+        XCTAssertEqual(g[0].zone, 1)
+        XCTAssertNil(g[1].zone)
+        guard case .gauges(let o) = try FrameDecoder.decode(Self.hex(Self.gaugesHex)) else { return XCTFail("not gauges") }
+        XCTAssertNil(o[0].zone, "older firmware: no zone index")
+    }
+
     func testGauges() throws {
         guard case .gauges(let g) = try FrameDecoder.decode(Self.hex(Self.gaugesHex)) else { return XCTFail("not gauges") }
         XCTAssertEqual(g.count, 2)

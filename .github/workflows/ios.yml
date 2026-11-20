@@ -85,6 +85,11 @@ jobs:
             if [ -n "$PID" ] && [ "$PID" != "-" ]; then sample "$PID" 3 -file "out/logs/$SCREEN.sample.txt" >/dev/null 2>&1 || echo "sample failed" >> out/logs/procs.txt; fi
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
+          # one gauge's editor, scrolled to its zones
+          xcrun simctl launch "$UDID" com.minigauge.app -demo -tab 4 -screen layout -slot 2
+          sleep 18
+          xcrun simctl io "$UDID" screenshot "out/shots/slotZones.png"
+          xcrun simctl terminate "$UDID" com.minigauge.app || true
           ls -t ~/Library/Logs/DiagnosticReports/ 2>/dev/null | grep -i minigauge | head -5 | while read f; do cp "$HOME/Library/Logs/DiagnosticReports/$f" out/logs/ ; done
           cat out/logs/procs.txt || true
 

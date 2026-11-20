@@ -55,7 +55,7 @@ struct DemoSource {
         ]
         let gauges = [
             GaugeSlotValue(slot: 0, pid: 0x0C, valid: true, warn: rpm > 6500, critical: false, value: rpm.rounded(), ageMs: 80),
-            GaugeSlotValue(slot: 1, pid: 0x05, valid: true, warn: false, critical: false, value: (90 + 2 * sin(t / 30)) * 9 / 5 + 32, ageMs: 200),
+            GaugeSlotValue(slot: 1, pid: 0x05, valid: true, warn: false, critical: false, value: (90 + 2 * sin(t / 30)) * 9 / 5 + 32, ageMs: 200, zone: 1),
             GaugeSlotValue(slot: 2, pid: 0x0D, valid: true, warn: false, critical: false, value: kph * 0.621371, ageMs: 100),
             GaugeSlotValue(slot: 3, pid: 0xE1, valid: true, warn: false, critical: false, value: (map - 99) * 0.145038, ageMs: 100),
         ]
@@ -74,7 +74,10 @@ struct DemoSource {
             .init(i: 0, pid: 0x0C, key: "rpm", name: "RPM", unit: "rpm", d: 0, min: 0, max: 7500,
                   zones: [.init(from: 6500, to: 7500, crit: true, color: "#FF2D55")]),
             .init(i: 1, pid: 0x05, key: "coolant", name: "Coolant", unit: "°F", d: 0, min: 100, max: 260,
-                  zones: [.init(from: 230, to: 260, crit: true, color: "#FF2D55")]),
+                  zones: [.init(from: 100, to: 160, crit: false, color: "#3A8DFF", z: 0, al: 0),
+                          .init(from: 160, to: 215, crit: false, color: "#35C759", z: 1, al: 0),
+                          .init(from: 215, to: 230, crit: false, color: "#FFB020", z: 2, al: 1),
+                          .init(from: 230, to: 260, crit: true, color: "#FF2D55", z: 3, al: 2)]),
             .init(i: 2, pid: 0x0D, key: "speed", name: "Speed", unit: "mph", d: 0, min: 0, max: 140, zones: []),
             .init(i: 3, pid: 0xE1, key: "scboost", name: "Supercharger Boost", unit: "psi", d: 1, min: -14, max: 15,
                   zones: [.init(from: 13, to: 15, crit: false, color: "#FFB020")]),
@@ -98,10 +101,10 @@ extension DemoSource {
             return #"{"tempF":true,"speedMph":true,"pressPsi":true,"logAuto":true,"logActive":true,"logFile":"log_20261118-071502.csv","recOn":true,"recActive":true,"recFile":"drive_20261118-071455.txt","engine":true,"transport":1,"klproto":0,"klmode":"BMW (KWP2000)","klpins":0,"klpinsNow":0,"wifi":true,"wifiNow":true,"freeKB":5210,"totalKB":10048}"#
         case "config":
             return #"{"apMode":true,"ssid":"","tempF":true,"speedMph":true,"pressPsi":true,"slots":["# +
-                #"{"en":true,"pid":12,"min":0.0,"max":8000.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":6800.0,"to":8000.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
-                #"{"en":true,"pid":225,"min":-15.0,"max":15.0,"ticks":7,"major":1,"dec":1,"label":"Boost","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":13.0,"to":15.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
-                #"{"en":true,"pid":5,"min":104.0,"max":266.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":230.0,"to":266.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +
-                #"{"en":true,"pid":15,"min":32.0,"max":212.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":false,"from":0.0,"to":0.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]}"# +
+                #"{"en":true,"pid":12,"min":0.0,"max":8000.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":6800.0,"to":8000.0,"col":"FF2D55","al":2},{"on":false,"from":0.0,"to":0.0,"col":"FFB020","al":1},{"on":false,"from":0.0,"to":0.0,"col":"35C759","al":0},{"on":false,"from":0.0,"to":0.0,"col":"3A8DFF","al":0}]},"# +
+                #"{"en":true,"pid":225,"min":-15.0,"max":15.0,"ticks":7,"major":1,"dec":1,"label":"Boost","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":13.0,"to":15.0,"col":"FF2D55","al":2},{"on":false,"from":0.0,"to":0.0,"col":"FFB020","al":1},{"on":false,"from":0.0,"to":0.0,"col":"35C759","al":0},{"on":false,"from":0.0,"to":0.0,"col":"3A8DFF","al":0}]},"# +
+                #"{"en":true,"pid":5,"min":104.0,"max":266.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":104.0,"to":160.0,"col":"3A8DFF","al":0},{"on":true,"from":160.0,"to":215.0,"col":"35C759","al":0},{"on":true,"from":215.0,"to":230.0,"col":"FFB020","al":1},{"on":true,"from":230.0,"to":266.0,"col":"FF2D55","al":2}]},"# +
+                #"{"en":true,"pid":15,"min":32.0,"max":212.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":false,"from":0.0,"to":0.0,"col":"FF2D55","al":2},{"on":false,"from":0.0,"to":0.0,"col":"FFB020","al":1},{"on":false,"from":0.0,"to":0.0,"col":"35C759","al":0},{"on":false,"from":0.0,"to":0.0,"col":"3A8DFF","al":0}]}"# +
                 #"],"combo":[0,1,2,3]}"#
         case "pids":
             return #"[{"pid":12,"key":"rpm","name":"Engine RPM","unit":"rpm","min":0,"max":8000,"sup":true},{"pid":13,"key":"speedkph","name":"Speed","unit":"mph","min":0,"max":160,"sup":true},{"pid":5,"key":"coolant","name":"Coolant Temp","unit":"F","min":40,"max":130,"sup":true},{"pid":15,"key":"iat","name":"Intake Air Temp","unit":"F","min":-20,"max":80,"sup":true},{"pid":225,"key":"boost","name":"S/C Boost","unit":"psi","min":-100,"max":100,"sup":true},{"pid":237,"key":"fueltank","name":"Fuel in Tank","unit":"gal","min":0,"max":50,"sup":true}]"#

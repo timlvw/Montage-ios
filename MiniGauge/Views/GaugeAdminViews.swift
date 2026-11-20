@@ -291,6 +291,13 @@ struct GaugeLayoutView: View {
     // (10 updates a second) must not redraw them
     private var store: GaugeStore { GaugeStore.shared }
     @StateObject private var m = LayoutModel()
+    @State private var openSlot = false
+    // For the cloud build's screenshots: -slot N opens that gauge's editor at its zones.
+    private static let shotSlot: Int? = {
+        let a = ProcessInfo.processInfo.arguments
+        if let i = a.firstIndex(of: "-slot"), i + 1 < a.count { return Int(a[i + 1]) }
+        return nil
+    }()
 
     var body: some View {
         let _ = Diag.body("layout", Self.self)
@@ -371,6 +378,8 @@ struct GaugeLayoutView: View {
         }
         .navigationTitle("Gauge layout")
         .toolbar { EditButton() }
+        .navigationDestination(isPresented: $openSlot) { SlotEditView(m: m, index: Self.shotSlot ?? 0, scrollToZones: true) }
+        .onChange(of: m.config != nil) { _, loaded in if loaded, let s = Self.shotSlot, s < (m.config?.slots.count ?? 0) { openSlot = true } }
         .task { await m.load(store) }
         .refreshable { await m.load(store) }
     }
@@ -389,8 +398,10 @@ struct SlotEditView: View {
     @State private var saving = false
     @State private var themeName = ""
     @State private var askTheme = false
+    var scrollToZones = false
 
     var body: some View {
+        ScrollViewReader { proxy in
         Form {
             if let binding = Binding($edit) {
                 Section {
@@ -423,18 +434,40 @@ struct SlotEditView: View {
                     }
                     Button("Save this look as a theme…") { askTheme = true }
                 }
-                ForEach(0..<min(2, binding.wrappedValue.z.count), id: \.self) { z in
-                    Section(z == 0 ? "Red zone" : "Amber zone") {
-                        Toggle("On", isOn: binding.z[z].on)
-                        if binding.wrappedValue.z[z].on {
-                            numberRow("From", binding.z[z].from)
-                            numberRow("To", binding.z[z].to)
-                            colorRow("Colour", binding.z[z].col)
+                Section {
+                    Stepper(value: binding.zoneCount, in: 0...binding.wrappedValue.z.count) {
+                        LabeledContent("Zones", value: "\(binding.wrappedValue.zoneCount)")
+                    }
+                    .id("zones")
+                } footer: {
+                    Text("Coloured bands on the dial; the number takes the colour of the band it's in. Past the top of the highest band counts as that band. Fewer zones hides the last ones but keeps their settings.")
+                }
+                ForEach(0..<binding.wrappedValue.zoneCount, id: \.self) { z in
+                    Section {
+                        numberRow("From", binding.z[z].from)
+                        numberRow("To", binding.z[z].to)
+                        colorRow("Colour", binding.z[z].col)
+                        if binding.wrappedValue.z[z].al != nil {
+                            Picker("Alarm", selection: Binding(get: { binding.wrappedValue.alarm(z) }, set: { binding.wrappedValue.z[z].al = $0 })) {
+                                Text("Colour only").tag(0)
+                                Text("Warning").tag(1)
+                                Text("Critical").tag(2)
+                            }
+                        } else {
+                            LabeledContent("Alarm", value: z == 0 ? "Critical" : "Warning")
                         }
+                    } header: { Text("Zone \(z + 1)") } footer: {
+                        if binding.wrappedValue.z[z].to <= binding.wrappedValue.z[z].from { Text("Set From and To (To above From) to show it.") }
                     }
                 }
             }
             if !m.error.isEmpty { Section { Text(m.error).foregroundStyle(Theme.warn) } }
+        }
+        .task {
+            guard scrollToZones else { return }
+            try? await Task.sleep(nanoseconds: 1_500_000_000)
+            withAnimation { proxy.scrollTo("zones", anchor: .top) }
+        }
         }
         .navigationTitle(m.slotName(index))
         .toolbar {
@@ -490,6 +523,7 @@ struct SlotEditView: View {
             if a.from != b.from { p.append(("z\(z)from", num(a.from))) }
             if a.to != b.to { p.append(("z\(z)to", num(a.to))) }
             if a.col != b.col { p.append(("z\(z)col", a.col)) }
+            if a.al != b.al, let v = a.al { p.append(("z\(z)al", "\(v)")) }
         }
         if e.pid != o.pid {
             // a new PID re-seeds the face on the gauge: send just that, then the
