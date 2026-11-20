@@ -85,6 +85,11 @@ jobs:
             if [ -n "$PID" ] && [ "$PID" != "-" ]; then sample "$PID" 3 -file "out/logs/$SCREEN.sample.txt" >/dev/null 2>&1 || echo "sample failed" >> out/logs/procs.txt; fi
             xcrun simctl terminate "$UDID" com.minigauge.app || true
           done
+          # Settings with "Connect to: OBD adapter"
+          xcrun simctl launch "$UDID" com.minigauge.app -demo -tab 4 -screen settings -source adapter
+          sleep 15
+          xcrun simctl io "$UDID" screenshot "out/shots/settingsAdapter.png"
+          xcrun simctl terminate "$UDID" com.minigauge.app || true
           # one gauge's editor, scrolled to its zones
           xcrun simctl launch "$UDID" com.minigauge.app -demo -tab 4 -screen layout -slot 2
           sleep 18

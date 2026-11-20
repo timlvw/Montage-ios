@@ -34,7 +34,7 @@ targets:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        NSBluetoothAlwaysUsageDescription: MiniGauge connects to your gauge cluster over Bluetooth to show live engine data.
+        NSBluetoothAlwaysUsageDescription: MiniGauge connects to your gauge cluster, or straight to your OBD adapter, over Bluetooth to show live engine data.
         UIBackgroundModes:
           - bluetooth-central
         NSSupportsLiveActivities: true

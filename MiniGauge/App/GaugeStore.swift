@@ -2,6 +2,11 @@ import Foundation
 import SwiftUI
 import UIKit
 
+/// Where the live data comes from.
+enum DataSource: String, CaseIterable {
+    case gauge, adapter
+}
+
 enum ConnState: Equatable {
     case idle, scanning, connecting, connected, bluetoothOff, unauthorized, unsupported, demo
 
@@ -51,11 +56,14 @@ final class GaugeStore: ObservableObject {
     @Published var keepAwake: Bool { didSet { save("keepAwake", keepAwake); applyIdleTimer() } }
     @Published var autoLog: Bool { didSet { save("autoLog", autoLog) } }      // record a trip log while the engine runs
     @Published var demoMode: Bool { didSet { save("demoMode", demoMode); restartSource() } }
+    @Published var source: DataSource { didSet { save("source", source.rawValue); if source != oldValue { restartSource() } } }
     @Published var dyno: DynoSettings { didSet { if let d = try? JSONEncoder().encode(dyno) { UserDefaults.standard.set(d, forKey: "dyno") } } }
     @Published private(set) var logging = false
 
     private(set) var boost = BoostTracker()
     private let link = GaugeLink()
+    private let adapter = ObdAdapterLink()
+    private var savedUnits = ""
     private let activity = ActivityController()
     private let logger = TripLogger()
     private var demo = DemoSource()
@@ -79,7 +87,12 @@ final class GaugeStore: ObservableObject {
         demoMode = d.object(forKey: "demoMode") as? Bool ?? ProcessInfo.processInfo.arguments.contains("-demo")
         if let data = d.data(forKey: "dyno"), let v = try? JSONDecoder().decode(DynoSettings.self, from: data) { dyno = v }
         else { dyno = DynoSettings() }
+        source = DataSource(rawValue: d.string(forKey: "source") ?? "") ?? .gauge
+        // for the cloud build's screenshots: -source adapter
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-source"), i + 1 < args.count, let s = DataSource(rawValue: args[i + 1]) { source = s }
         link.store = self
+        adapter.store = self
     }
 
     private func save(_ key: String, _ v: Any) { UserDefaults.standard.set(v, forKey: key) }
@@ -98,6 +111,7 @@ final class GaugeStore: ObservableObject {
         demoTimer = nil
         if demoMode {
             link.stop()
+            adapter.stop()
             setConn(.demo)
             info = DemoSource.info
             rawText = DemoSource.rawText
@@ -111,9 +125,34 @@ final class GaugeStore: ObservableObject {
         } else {
             engine = EngineFrame()
             info = nil
-            link.start()
+            gauges = []
+            status = StatusFrame()
+            if source == .adapter {
+                link.stop()
+                adapter.start()
+            } else {
+                adapter.stop()
+                link.start()
+            }
         }
     }
+
+    /// Talking straight to an OBD adapter instead of the gauge.
+    var isAdapter: Bool { source == .adapter && !demoMode }
+
+    /// The connection state, in words, for whichever device is in use.
+    var connText: String {
+        guard isAdapter else { return conn.text }
+        switch conn {
+        case .scanning: return "Looking for your OBD adapter…"
+        case .connecting: return "Connecting to the OBD adapter…"
+        default: return conn.text
+        }
+    }
+
+    func forgetAdapter() { adapter.forget() }
+    func setDirectInfo(_ i: GaugeInfo) { info = i }
+    func lastNoticeFromLink(_ s: String) { lastNotice = s }
 
     func appBecameActive() {
         applyIdleTimer()
@@ -167,6 +206,15 @@ final class GaugeStore: ObservableObject {
         switch f {
         case .engine(let e):
             engine = e
+            if !isAdapter && !demoMode && e.link != .none {
+                // the gauge's display units, so direct mode shows the same ones
+                let u = "\(e.tempF)\(e.speedMph)\(e.pressPsi)"
+                if u != savedUnits {
+                    savedUnits = u
+                    let d = UserDefaults.standard
+                    d.set(e.tempF, forKey: "lastUnits.tempF"); d.set(e.speedMph, forKey: "lastUnits.mph"); d.set(e.pressPsi, forKey: "lastUnits.psi")
+                }
+            }
             lastFrame = Date()
             boost.update(e)
             let now = Date()
@@ -241,6 +289,10 @@ final class GaugeStore: ObservableObject {
             if cmd.hasPrefix("car ") { carText = "Demo mode: connect to your MiniGauge to run this."; carBusy = false }
             return true
         }
+        if isAdapter {
+            lastNotice = "Connected to the OBD adapter, not the gauge: that needs the gauge."
+            return false
+        }
         let ok = link.send(cmd)
         if !ok { lastNotice = "Not connected to the gauge." }
         return ok
@@ -260,9 +312,23 @@ final class GaugeStore: ObservableObject {
         send("cartext")
     }
 
-    func readCodes() { send("codes") }
+    func readCodes() {
+        guard isAdapter else { send("codes"); return }
+        adapter.readCodes { [weak self] r in
+            switch r {
+            case .success(let c): self?.adapter.setCodes(c)
+            case .failure(let e): self?.lastNotice = "Adapter: \(e.text)"
+            }
+        }
+    }
+
     @MainActor
-    func clearCodes() async -> String? { await act("codes clear") }
+    func clearCodes() async -> String? {
+        guard isAdapter else { return await act("codes clear") }
+        return await withCheckedContinuation { (cont: CheckedContinuation<String?, Never>) in
+            adapter.clearCodes { e in cont.resume(returning: e.map { "Adapter: \($0.text)" }) }
+        }
+    }
 
     func clearNotice() { lastNotice = "" }
 
@@ -389,7 +455,7 @@ final class GaugeStore: ObservableObject {
         }
         let linkText: String
         switch conn {
-        case .connected: linkText = engine.link == .none ? "Gauge connected" : engine.link.title
+        case .connected: linkText = isAdapter ? "OBD adapter" : engine.link == .none ? "Gauge connected" : engine.link.title
         case .demo: linkText = "Demo"
         default: linkText = "Not connected"
         }

@@ -222,8 +222,9 @@ struct ConnectionBanner: View {
                 if store.conn == .scanning || store.conn == .connecting { ProgressView().tint(Theme.accent) }
                 else { Image(systemName: "antenna.radiowaves.left.and.right.slash").foregroundStyle(Theme.warn) }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(store.conn.text).font(.subheadline.weight(.semibold))
-                    Text("The gauge streams over Bluetooth in K-line mode. Key on, gauge powered.")
+                    Text(store.connText).font(.subheadline.weight(.semibold))
+                    Text(store.isAdapter ? "Straight to your Bluetooth OBD adapter: plugged in, key on, gauge off the K-line."
+                                         : "The gauge streams over Bluetooth. Key on, gauge powered.")
                         .font(.caption).foregroundStyle(Theme.muted)
                 }
                 Spacer(minLength: 0)
@@ -233,7 +234,8 @@ struct ConnectionBanner: View {
         } else if store.conn == .connected && store.engine.link != .bmw && store.engine.link != .obd {
             HStack(spacing: 10) {
                 ProgressView().tint(Theme.accent)
-                Text(store.status.linkText.isEmpty ? "Gauge connected, waiting for the car…" : store.status.linkText)
+                Text(store.status.linkText.isEmpty ? (store.isAdapter ? "Adapter connected, waking the car…" : "Gauge connected, waiting for the car…")
+                                                   : store.status.linkText)
                     .font(.subheadline)
                 Spacer(minLength: 0)
             }

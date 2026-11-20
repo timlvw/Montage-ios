@@ -13,20 +13,27 @@ struct CarView: View {
                 VStack(spacing: 10) {
                     ConnectionBanner()
                     codesCard
-                    Card(title: "Engine computer (any time in BMW mode)") {
-                        HStack {
-                            jobButton("Identify", 1)
-                            jobButton("Fault memory", 2)
+                    if store.isAdapter {
+                        Card(title: "Gauge jobs") {
+                            Text("Identify, fault memory and the other modules need the MiniGauge (BMW mode on the K-line). Switch to it under More → Settings.")
+                                .font(.caption).foregroundStyle(Theme.muted)
                         }
-                    }
-                    Card(title: "Other modules (park first)") {
-                        Text("The gauges pause for a few seconds while the gauge talks to these.")
-                            .font(.caption).foregroundStyle(Theme.muted)
-                        HStack {
-                            jobButton("Steering pump", 3, parked: true)
-                            jobButton("Find DSC", 4, parked: true)
+                    } else {
+                        Card(title: "Engine computer (any time in BMW mode)") {
+                            HStack {
+                                jobButton("Identify", 1)
+                                jobButton("Fault memory", 2)
+                            }
                         }
-                        jobButton("Full address sweep (~6 min)", 5, parked: true)
+                        Card(title: "Other modules (park first)") {
+                            Text("The gauges pause for a few seconds while the gauge talks to these.")
+                                .font(.caption).foregroundStyle(Theme.muted)
+                            HStack {
+                                jobButton("Steering pump", 3, parked: true)
+                                jobButton("Find DSC", 4, parked: true)
+                            }
+                            jobButton("Full address sweep (~6 min)", 5, parked: true)
+                        }
                     }
                     if !store.carText.isEmpty || store.carBusy {
                         Card(title: store.carBusy ? "Running…" : "Result") {
@@ -73,8 +80,10 @@ struct CarView: View {
                         Text(store.engine.milOn ? "Check-engine lamp: ON" : "Check-engine lamp: off")
                             .font(.caption).foregroundStyle(store.engine.milOn ? Theme.danger : Theme.muted)
                     }
-                    Text("“Fault memory” below gives the engine computer's own description of each.")
-                        .font(.caption).foregroundStyle(Theme.muted)
+                    if !store.isAdapter {
+                        Text("“Fault memory” below gives the engine computer's own description of each.")
+                            .font(.caption).foregroundStyle(Theme.muted)
+                    }
                 }
             } else {
                 Text("Not read yet.").foregroundStyle(Theme.muted)

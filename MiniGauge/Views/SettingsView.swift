@@ -16,13 +16,34 @@ struct SettingsView: View {
                 .labelsHidden()
             }
             Section {
+                Picker("Connect to", selection: $store.source) {
+                    Text("MiniGauge").tag(DataSource.gauge)
+                    Text("OBD adapter (direct)").tag(DataSource.adapter)
+                }
+                if store.source == .adapter {
+                    LabeledContent("Adapter", value: store.conn == .connected ? store.deviceName : store.connText)
+                }
+            } header: { Text("Car data") } footer: {
+                if store.source == .adapter {
+                    Text("Straight to a Bluetooth LE OBD adapter (ELM327), no gauge needed: standard OBD values, about one update a second each, trouble codes. Not the BMW-mode values (boost before the supercharger, ignition per cylinder, injector duty, gear), and not the gauge pages. Only with the gauge unplugged or off: two devices talking to the engine computer at once garble the K-line.")
+                } else {
+                    Text("The gauge reads the car (K-line, BMW mode) and streams everything to the phone.")
+                }
+            }
+            Section {
                 Toggle("Keep the screen on while connected", isOn: $store.keepAwake)
                 Toggle("Demo data (no gauge needed)", isOn: $store.demoMode)
             }
             Section {
-                Button("Forget this gauge and search again", role: .destructive) { store.forgetGauge() }
+                if store.source == .adapter {
+                    Button("Forget this adapter and search again", role: .destructive) { store.forgetAdapter() }
+                } else {
+                    Button("Forget this gauge and search again", role: .destructive) { store.forgetGauge() }
+                }
             } footer: {
-                Text("The app remembers the gauge it last connected to and reconnects by itself, also in the background. The gauge streams over Bluetooth in K-line mode.")
+                Text(store.source == .adapter
+                     ? "The app remembers the adapter it last used and reconnects by itself. It looks for adapters named like OBD, ELM, Vlink, Vgate, Veepeak or SinoTrack."
+                     : "The app remembers the gauge it last connected to and reconnects by itself, also in the background.")
             }
         }
         .navigationTitle("Settings")

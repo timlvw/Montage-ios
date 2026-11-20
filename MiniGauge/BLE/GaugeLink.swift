@@ -133,8 +133,9 @@ final class GaugeLink: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
 
     func centralManager(_ c: CBCentralManager, didDisconnectPeripheral p: CBPeripheral, error: Error?) {
         cmdChar = nil
+        guard wanted else { return }            // stopped: the adapter link may be in charge now
         store?.linkDropped()
-        guard wanted, p.identifier == peripheral?.identifier else { return }
+        guard p.identifier == peripheral?.identifier else { return }
         c.connect(p, options: nil)          // waits until the gauge is back
         store?.setConn(.connecting)
     }

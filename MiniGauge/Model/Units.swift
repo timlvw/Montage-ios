@@ -67,6 +67,8 @@ struct BoostTracker {
 
     mutating func update(_ e: EngineFrame) {
         if let rpm = e[.rpm], rpm < 400, let pre = e[.mapPre], pre > 60, pre < 110 { baroKpa = pre }
+        // no pre-supercharger sensor (standard OBD): engine off, the manifold reads the barometer
+        else if e[.mapPre] == nil, let rpm = e[.rpm], rpm < 100, let m = e[.map], m > 60, m < 110 { baroKpa = m }
     }
 
     func boost(_ e: EngineFrame) -> Double? {
