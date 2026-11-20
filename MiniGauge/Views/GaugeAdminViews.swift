@@ -198,6 +198,17 @@ struct GaugeSettingsView: View {
                     }
                     Button("Restart the gauge", role: .destructive) { confirmRestart = true }
                 } header: { Text("K-line") }
+                if let w = st.wifi {
+                    Section {
+                        toggle("Wi-Fi", w) { "wifi=\($0 ? 1 : 0)" }
+                        if st.wifiRestartNeeded {
+                            Text(w ? "Wi-Fi comes on after a restart." : "Wi-Fi goes off after a restart.").foregroundStyle(Theme.warn)
+                            Button("Restart now", role: .destructive) { confirmRestart = true }
+                        }
+                    } header: { Text("Gauge Wi-Fi") } footer: {
+                        Text("The gauge's web page, web updates and the overhead display use Wi-Fi. Off leaves more memory for Bluetooth. The app works either way; it uses Bluetooth.")
+                    }
+                }
                 Section {
                     LabeledContent("Storage", value: "\(kb(st.freeKB)) free of \(kb(st.totalKB))")
                 }

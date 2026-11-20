@@ -95,7 +95,7 @@ extension DemoSource {
     static func adminReply(_ cmd: String) -> String? {
         switch cmd {
         case "settings":
-            return #"{"tempF":true,"speedMph":true,"pressPsi":true,"logAuto":true,"logActive":true,"logFile":"log_20261118-071502.csv","recOn":true,"recActive":true,"recFile":"drive_20261118-071455.txt","engine":true,"transport":1,"klproto":0,"klmode":"BMW (KWP2000)","klpins":0,"klpinsNow":0,"freeKB":5210,"totalKB":10048}"#
+            return #"{"tempF":true,"speedMph":true,"pressPsi":true,"logAuto":true,"logActive":true,"logFile":"log_20261118-071502.csv","recOn":true,"recActive":true,"recFile":"drive_20261118-071455.txt","engine":true,"transport":1,"klproto":0,"klmode":"BMW (KWP2000)","klpins":0,"klpinsNow":0,"wifi":true,"wifiNow":true,"freeKB":5210,"totalKB":10048}"#
         case "config":
             return #"{"apMode":true,"ssid":"","tempF":true,"speedMph":true,"pressPsi":true,"slots":["# +
                 #"{"en":true,"pid":12,"min":0.0,"max":8000.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"FF2D55","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":6800.0,"to":8000.0,"col":"FF2D55"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]},"# +

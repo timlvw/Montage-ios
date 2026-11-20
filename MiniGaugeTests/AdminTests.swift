@@ -25,6 +25,19 @@ final class AdminTests: XCTestCase {
         XCTAssertFalse(s.restartNeeded)
     }
 
+    func testWifiSwitchedOffPendingRestart() throws {
+        // gauge_admin.cpp's host test after "set wifi=0": saved off, still on this boot
+        let j = #"{"tempF":true,"speedMph":false,"pressPsi":false,"wifi":false,"wifiNow":true,"logAuto":false,"logActive":false,"logFile":"log_0002.csv","recOn":false,"recActive":false,"recFile":"drive_20261118-120000.txt","engine":false,"transport":1,"klproto":2,"klmode":"BMW (KWP2000)","klpins":1,"klpinsNow":0,"klpinNames":["UART connector RXD / TXD","Header pins 17 / 18"],"freeKB":4882,"totalKB":9765}"#
+        let s = try XCTUnwrap(AdminReply.decode(GaugeSettings.self, j))
+        XCTAssertEqual(s.wifi, false)
+        XCTAssertTrue(s.wifiRestartNeeded)
+        var t = s; t.wifiNow = false
+        XCTAssertFalse(t.wifiRestartNeeded, "off and already off this boot")
+        let old = try XCTUnwrap(AdminReply.decode(GaugeSettings.self, #"{"tempF":true,"speedMph":false,"pressPsi":false,"logAuto":false,"logActive":false,"logFile":"","recOn":false,"recActive":false,"recFile":"","engine":false,"transport":1,"klproto":0,"klmode":"","klpins":0,"klpinsNow":0,"freeKB":1,"totalKB":2}"#))
+        XCTAssertNil(old.wifi, "older firmware: no Wi-Fi switch shown")
+        XCTAssertFalse(old.wifiRestartNeeded)
+    }
+
     func testConfigWithEscapedLabel() throws {
         let j = #"{"apMode":false,"ssid":"","tempF":true,"speedMph":false,"pressPsi":false,"slots":[{"en":true,"pid":5,"min":40.0,"max":130.0,"ticks":9,"major":2,"dec":-1,"label":"Water \"temp\"","emblem":0,"emtext":"","needle":"00FF00","bg":"000000","text":"FFFFFF","arc":"00E5FF","emcol":"FFFFFF","z":[{"on":true,"from":110.0,"to":130.0,"col":"FF0000"},{"on":false,"from":0.0,"to":0.0,"col":"FFB020"}]}],"combo":[0,-1,-1,-1]}"#
         let c = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, j))

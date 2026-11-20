@@ -22,10 +22,14 @@ struct GaugeSettings: Codable, Equatable {
     var klpins = 0             // saved: 0 UART connector, 1 header pins
     var klpinsNow = 0          // in use this boot (-1 = not in K-line mode)
     var klpinNames: [String]? = nil   // the two wiring choices as this board names them (older firmware: absent)
+    var wifi: Bool? = nil      // gauge Wi-Fi, saved (older firmware: absent)
+    var wifiNow: Bool? = nil   // what this boot started with
     var freeKB = 0
     var totalKB = 0
 
     var restartNeeded: Bool { transport == 1 && klpinsNow >= 0 && klpins != klpinsNow }
+    /// Wi-Fi switched since the gauge started: it applies at the next restart.
+    var wifiRestartNeeded: Bool { if let w = wifi, let n = wifiNow { return w != n } else { return false } }
 
     /// Menu text for wiring choice 0 / 1: the gauge's own names when it sends
     /// them (the LCD 2.1's pins differ), else the AMOLED boards'.
