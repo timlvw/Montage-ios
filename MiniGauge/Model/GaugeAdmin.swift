@@ -73,6 +73,7 @@ struct SlotConfig: Codable, Equatable {
     var text: String
     var arc: String
     var emcol: String
+    var zsaved: Bool? = nil   // own default zones saved for this value (v5.12+)
     var z: [ZoneConfig]
 }
 

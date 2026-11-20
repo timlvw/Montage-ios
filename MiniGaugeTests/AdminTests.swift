@@ -48,6 +48,9 @@ final class AdminTests: XCTestCase {
         c.slots[0].zoneCount = 1
         XCTAssertEqual(c.slots[0].z.map(\.on), [true, false, false, false])
         XCTAssertEqual(c.slots[0].z[2].from, 40, "fewer zones keeps their values")
+        XCTAssertNil(c.slots[0].zsaved, "firmware without default zones: no buttons")
+        let d = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, j.replacingOccurrences(of: #""emcol":"000000","#, with: #""emcol":"000000","zsaved":true,"#)))
+        XCTAssertEqual(d.slots[0].zsaved, true)
         // older firmware: two zones, no alarm field
         let old = try XCTUnwrap(AdminReply.decode(GaugeConfig.self, #"{"apMode":false,"ssid":"","tempF":true,"speedMph":false,"pressPsi":false,"slots":[{"en":true,"pid":5,"min":40.0,"max":130.0,"ticks":9,"major":2,"dec":-1,"label":"","emblem":0,"emtext":"","needle":"00FF00","bg":"000000","text":"000000","arc":"000000","emcol":"000000","z":[{"on":true,"from":110.0,"to":130.0,"col":"FF0000"},{"on":true,"from":100.0,"to":110.0,"col":"FFB020"}]}],"combo":[0,-1,-1,-1]}"#))
         XCTAssertNil(old.slots[0].z[0].al)

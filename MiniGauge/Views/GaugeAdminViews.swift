@@ -398,7 +398,10 @@ struct SlotEditView: View {
     @State private var saving = false
     @State private var themeName = ""
     @State private var askTheme = false
+    @State private var zoneAction: ZoneAction?
     var scrollToZones = false
+
+    enum ZoneAction: Identifiable { case apply, save, forget; var id: Self { self } }
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -439,8 +442,14 @@ struct SlotEditView: View {
                         LabeledContent("Zones", value: "\(binding.wrappedValue.zoneCount)")
                     }
                     .id("zones")
+                    if let saved = binding.wrappedValue.zsaved {
+                        Button("Default zones") { zoneAction = .apply }
+                        Button("Save as default for \(m.name(binding.wrappedValue.pid))") { zoneAction = .save }
+                        if saved { Button("Forget saved default", role: .destructive) { zoneAction = .forget } }
+                    }
                 } footer: {
-                    Text("Coloured bands on the dial; the number takes the colour of the band it's in. Past the top of the highest band counts as that band. Fewer zones hides the last ones but keeps their settings.")
+                    let d = binding.wrappedValue.zsaved.map { $0 ? " Default zones: your saved ones for this value." : " Default zones: the built-in ones for this value." } ?? ""
+                    Text("Coloured bands on the dial; the number takes the colour of the band it's in. Past the top of the highest band counts as that band. Fewer zones hides the last ones but keeps their settings." + d)
                 }
                 ForEach(0..<binding.wrappedValue.zoneCount, id: \.self) { z in
                     Section {
@@ -476,11 +485,42 @@ struct SlotEditView: View {
             }
         }
         .onAppear(perform: reset)
+        .confirmationDialog(zoneTitle, isPresented: Binding(get: { zoneAction != nil }, set: { if !$0 { zoneAction = nil } }),
+                            titleVisibility: .visible, presenting: zoneAction) { a in
+            Button(a == .apply ? "Use default zones" : a == .save ? "Save as default" : "Forget", role: a == .save ? nil : .destructive) {
+                Task { await zoneRun(a) }
+            }
+        } message: { a in
+            switch a {
+            case .apply: Text("Replaces this gauge's zones with the \(edit?.zsaved == true ? "saved" : "built-in") defaults for \(valueName).")
+            case .save: Text("New \(valueName) gauges and Default zones will use these zones, whatever units are chosen.")
+            case .forget: Text("This gauge keeps its zones; Default zones goes back to the built-in ones.")
+            }
+        }
         .alert("Theme name", isPresented: $askTheme) {
             TextField("Name", text: $themeName)
             Button("Save") { let n = themeName; Task { await m.run(store, ["theme save " + AdminQuery.encode([("i", "\(index)"), ("name", n)])]) } }
             Button("Cancel", role: .cancel) {}
         }
+    }
+
+    private var valueName: String { m.name(edit?.pid ?? 0) }
+    private var zoneTitle: String {
+        switch zoneAction {
+        case .apply?: return "Default zones"
+        case .save?: return "Save as default for \(valueName)?"
+        case .forget?: return "Forget the saved default?"
+        case nil: return ""
+        }
+    }
+
+    /// Unsaved edits go to the gauge first, so "save as default" saves what's on screen.
+    private func zoneRun(_ a: ZoneAction) async {
+        await save()
+        let k: String
+        switch a { case .apply: k = "zdefault"; case .save: k = "zsave"; case .forget: k = "zforget" }
+        await m.run(store, ["slot i=\(index)&\(k)=1"])
+        reset()
     }
 
     private func reset() {
