@@ -1,0 +1,1111 @@
+Command line invocation:
+    /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/xcodebuild test -project MiniGauge.xcodeproj -scheme MiniGauge -destination id=95BA7042-C493-49FF-A71D-8A11DA63CB0F -derivedDataPath build/sim CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'MiniGaugeTests' in project 'MiniGauge'
+        ➜ Explicit dependency on target 'MiniGauge' in project 'MiniGauge'
+    Target 'MiniGauge' in project 'MiniGauge'
+        ➜ Explicit dependency on target 'MiniGaugeWidgets' in project 'MiniGauge'
+    Target 'MiniGaugeWidgets' in project 'MiniGauge' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+Build description signature: d1411b3dab2ac66cf348e4d94282fe34
+Build description path: /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/XCBuildData/d1411b3dab2ac66cf348e4d94282fe34.xcbuilddata
+ClangStatCache /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge-e3d5e4974c6b9d4e7914551216479774-VFS-iphonesimulator/all-product-headers.yaml
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge-e3d5e4974c6b9d4e7914551216479774-VFS-iphonesimulator/all-product-headers.yaml
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /Users/runner/work/Montage-ios/Montage-ios/MiniGauge.xcodeproj
+    builtin-create-build-directory /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftConstValuesFileList (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_const_extract_protocols.json (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.LinkFileList (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-OutputFileMap.json (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyStaticMetadataFileList (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyMetadataFileList (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-project-headers.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-own-target-headers.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-generated-files.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-target-headers.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-non-framework-target-headers.hmap (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugEntryPoint-normal-x86_64.txt (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugEntryPoint-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibPath-normal-x86_64.txt (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibPath-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/empty-MiniGaugeTests.plist (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/empty-MiniGaugeTests.plist
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibInstallName-normal-x86_64.txt (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibInstallName-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_const_extract_protocols.json (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftConstValuesFileList (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.LinkFileList (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-OutputFileMap.json (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyStaticMetadataFileList (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyMetadataFileList (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-project-headers.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-own-target-headers.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-generated-files.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-target-headers.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-non-framework-target-headers.hmap (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_const_extract_protocols.json (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftConstValuesFileList (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.LinkFileList (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-OutputFileMap.json (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyStaticMetadataFileList (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyMetadataFileList (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-project-headers.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-own-target-headers.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-generated-files.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-target-headers.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-non-framework-target-headers.hmap (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibPath-normal-x86_64.txt (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibPath-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibInstallName-normal-x86_64.txt (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    write-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibInstallName-normal-x86_64.txt
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/__preview.dylib normal (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -install_name @rpath/MiniGaugeWidgets.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_dependency_info.dat -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/__preview.dylib
+
+ProcessInfoPlistFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/Info.plist /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeWidgets/Info.plist (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-infoPlistUtility /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeWidgets/Info.plist -producttype com.apple.product-type.app-extension -expandbuildsettings -format binary -platform iphonesimulator -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/Info.plist
+
+SwiftDriver MiniGaugeWidgets normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-SwiftDriver -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeWidgets -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/DeveloperToolsSupport-B58TLREAUFZIE385P8DNJV8RD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ptrauth-1ZKBTXBBCIBT9TFC2NBN006QZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stddef-TNIXT8HOLVOXE1T77PL196T5.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_AvailabilityInternal-DCA06R5FBNK0FJWSRFRVMP6UZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftShims-EST7UNUWJ2FA3PVNVEU8VQAVL.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ptrcheck-3QVU9QM7VSDPDEJ9UMFFSCB82.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_SwiftConcurrencyShims-7R1X4G90NSMS8JCV8ZB6KES0W.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdarg-DRX9UJDK46879HRS8JOO1H0PD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ActivityKit-DTVZEFQ1HRPPO8HW9U9SJFUT9.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation1-9ZVHW5LDBGZ7B9WI8AMZ3BLTZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdbool-CH032SKWM7JY09DPI82VY5SYZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_float-DNZQNF1JC1OVYC8OM1YQ54DN6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_limits-998D3I916VINJJO1UUWB4TF83.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation2-57GITFKT2UT5645L3R6KLPOM1.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ExtensionFoundation-COE8XF7UOXONGMIW7QHOI7GM0.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdint-AX4SJIPH3FKVGHN3VYGDJZPAX.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_tgmath-2ZRMZCSHW8UVFFBLKRUPB0IW3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/sys_types-26WVQR66B6NDDVNQLLTDF4ZRG.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdatomic-E3SOK7REHUZAYKBU9TAC4NR5U.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation3-CWW9Z1YT1ND59TCLYA3OEXUI8.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_intrinsics-5R360MGP3X62P55T0V3S63YGK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_inttypes-8Z235HBXWFBBO4S2NQ6EU5C90.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Darwin-9X07N7CPGH7V052C0NHKP1P4S.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/MachO-22IO68WVD5J67W3BRNT5APJQT.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ObjectiveC-4VWZP94YFECYQEQVVYJA9WJTR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/simd-67QMFR5BNYF5VV5XXDSLW782V.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os_object-2R1XBJOKX4BWWKJAAPIU41KBB.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os_workgroup-6NUVIBZSI3H3S9MYB4ZEFN8C5.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Dispatch-7XMQGW6ND2BQ1QYH2ZVU4092J.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/XPC-9JVBWZRZR6C0YT5WXA9UIXJF8.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/dnssd-3IZHEAFIJLTQCWKNYA71HINNO.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreFoundation-1T0HK5NW24PABCJTLT9DTYH44.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os-BE5VI1VM52A1GF6BXOR28FCLR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CFNetwork-8X6DUKR3D2RL25DKUI46L2XRR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Security-BZUUM973MSIFGIOIJH8GQIYCN.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreGraphics-3KHDND5LJOUAO95S2LTJHPVKI.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Foundation-2L7PXSD4E0GUYACW66RGEJQ0D.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreText-CV5S5BKLNTBCSGNYJUH7DTYNB.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ImageIO-6ZZDL2B25GB9Z49ISG4MJDMQI.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Spatial-21QXN21YFZFHGIQOKJ9FX838G.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Accessibility-E78WRHB1WH8TU5SFAQ0JU9F6R.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreTransferable-2039W2X5SQJ636F5KO8OCR6GO.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/RelevanceKit-8AD13TP8C0QTOXK1OJ7SBT3BV.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/OSLog-WTT6ZZSDGOKH07ATE893WI7R.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Symbols-CIU7RAOVBKMDKZAART492TQ6C.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UserNotifications-82V0W1Z4PWWK1SBS4CKR2BOV3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Network-4K16GS5NHHJJC4H4OHMMAJTMM.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UniformTypeIdentifiers-D2EFNFPVWT4JB85TFA7ULQ76E.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/OpenGLES-72KK1GVFP2SW15FQQB1YDE94Z.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/WidgetKit-CS4BMER2ADWQRDO4B30AJ6K6A.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/FileProvider-94MORTBU33PSR4C4QP504XFX8.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreSpotlight-2IAKS9AOKBR22FLCI2OVXHRN9.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UIUtilities-EIALEW53WKZQQS6OM6I1FMH6R.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreData-D33R89K5Z1ZLHYNZ3EWQQH9Y.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_LocationEssentials-DBQWPILXDS0T32LV9ZX7VU2H6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/DataDetection-8HU9694G6K8STZ35Q713H50DR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/IOSurface-3NZP5NZ12HUMO1DQ5U3QU7VEK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/AppIntents-35KQY2XMGRZLISXCA3TEDJ45F.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreLocation-55WQUWCDXSTNQA79DJMUN5U9H.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Metal-2Y2U8BG9TJ1AKIBNFZYNHADA3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Intents-5PJ2A85SYYT3OXIVKCOXQC2BG.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreVideo-6V9KF4BZVBY0RLC63EU8SU53E.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreImage-7FP5OI5OWOSX4N1I7HC5768PD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/QuartzCore-BP9KS61OJ8B6KGRTMD8GMNW29.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftUICore-19NJEIPAYRZZUG74R65TXDY2S.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UIKit-1DRMU8ILAOAZCK26GNURM5LBP.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftUI-85K2P6V7LV0ZS833V33611O3D.pcm
+
+SwiftCompile normal x86_64 Compiling\ GaugeLiveActivity.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeWidgets/GaugeLiveActivity.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeWidgets/GaugeLiveActivity.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ MiniGaugeWidgets (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+EmitSwiftModule normal x86_64 (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 Compiling\ GaugeActivityAttributes.swift /Users/runner/work/Montage-ios/Montage-ios/Shared/GaugeActivityAttributes.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/Shared/GaugeActivityAttributes.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for MiniGaugeWidgets (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+SwiftDriver\ Compilation\ Requirements MiniGaugeWidgets normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeWidgets -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+SwiftMergeGeneratedHeaders /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources/MiniGaugeWidgets-Swift.h /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-Swift.h (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-swiftHeaderTool -arch x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-Swift.h -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources/MiniGaugeWidgets-Swift.h
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftdoc (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.abi.json (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftsourceinfo (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/unthinned (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/unthinned
+
+MkDir /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /bin/mkdir -p /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned
+
+GenerateAssetSymbols /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/actool /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets --compile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --minimum-deployment-target 18.0 --platform iphonesimulator --bundle-identifier com.minigauge.app --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CompileAssetCatalogVariant thinned /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/actool /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets --compile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone17,2 --filter-for-device-os-version 26.2 --development-region en --target-device iphone --minimum-deployment-target 18.0 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist_thinned
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned/AppIcon60x60@2x.png
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned/Assets.car
+
+
+SwiftDriver MiniGauge normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-SwiftDriver -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGauge -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_SwiftConcurrencyShims-35VGLVNRQA13FDX3Q7UM5OMDQ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdarg-8OAV43JJ5LJINTPQBG7DFHWKA.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdbool-1K79SUZY79WBQ5OMHPWCANEK1.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_float-CRLBYZPVH1XSBINAKTTVR1DL2.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ptrauth-5V1UD4SD4WFQ57RDAORJS42RS.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftShims-5Z2S58N2DBNJ2096WFAWJO6B0.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/DeveloperToolsSupport-ESB5RUME3W1BLBGXYDHPAOIKW.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stddef-A8T6WGR65ISTYUV1QWZRR9J6A.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ptrcheck-3ON9LRJJJ4BR9YFQ9049OZJ1W.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_AvailabilityInternal-63P0VVFJ8SK63PG2DKMQYVERM.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ActivityKit-EHP0II3VHFOIUK1Y4RG8HYLD4.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation1-9SY995NVTJF4I89CKHCA5Z3EL.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation2-9FJP6OFT5U3S5VS939FFPJFRV.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_limits-D4QC9X6XJSMELL36LZK0UD07I.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdint-7N6X78I1WU482MG8U0PF4LAY9.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/sys_types-CG68V9786UYWLM0W0JT0EBEFR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_stdatomic-5T03M37XV4UGVANE9ZLQSWWU6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_tgmath-EQ3GVRT7L4TNW4VV3VIRQ1W9C.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_DarwinFoundation3-7IZNB2L6VLLOS0UK4HDRBONEA.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_inttypes-E4LZP0ASHI8R2VMQMQEJSBCJ6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/_Builtin_intrinsics-CFK97T8VQ1WFI5JNPRQKCZSAD.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Darwin-4OQ78L1NHGK5YNLNFV7NTEDR7.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/simd-6HXKBEJPTNNPU2ZOT8DHXGBWE.pcm
+
+SwiftDriverJobDiscovery normal x86_64 Compiling GaugeActivityAttributes.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ObjectiveC-DBU66AUUUCPRNA8Z8BT4NFPWV.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/MachO-34SYUNFR6Q9BL1BR7CZAWKPSK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os_object-BBL8K00FA7GZAK62R1FNVMT7T.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os_workgroup-565VZBZ97YOMINPE20MTM8ZDU.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Spatial-7PGD5DEPTBH35I5D0IRJG4ZZ3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Dispatch-262U6515RER7J9V3YMCWM6U37.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/XPC-93EU8W6GNMQ1K82OM94IV1G47.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreFoundation-AZANGRAWU6XTM4IF57QOKVCNG.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/os-882KX7IKIBZ7V61CJKYVPSEUR.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreGraphics-PJCL97MW2WUYBK9Z7UX53VB5.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Security-2T5R8VAJTBSY2G5JVTQA9BB1H.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CFNetwork-9IU2LNFYP7EENTF85V3NU0CND.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/ImageIO-428C92ZEX1XW52BBXW28MNCAN.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreText-A12KKNB716V6E01JDZLWSRXP3.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Foundation-78MADNR3SJYJ25MR3EJUOAKS1.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UIUtilities-1SV4QYYFAYYH13HFJYEIMLQIP.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreData-BNUNPKRRXKCZAP2JORQLLVPWX.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/IOSurface-93I20A6MQHQXZV993JDANQPY0.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/OSLog-2LM1MF7IYPIO2DOQG8TUPGRP1.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/FileProvider-3GC2VAHPWT0O1RMFAPB4Z2O34.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Symbols-BL6T17QRWS76HTMFZYBA6DETY.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Accessibility-9981GNA8RKIEQPBDVJ99DM7AK.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UniformTypeIdentifiers-2KEHQRRRPHB0FVZMUH9B8MHUU.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UserNotifications-3BUR01LUMRJX7LB5YBF4W38MT.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreTransferable-C6C5K01H5U22FOSGGYDEDZXP4.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreBluetooth-4YUHX20D23XT9WRM174G4Q7EZ.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Metal-DWSZHKHS14SQV8VFT0E6VD44U.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/OpenGLES-31TD79FQ0D46HVDQVX43FPASM.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/DataDetection-2JIQ3YNPA1FMD4MOFLWGRKGLU.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreVideo-4TQA1E0O5LJJESSCKLBJM1P3G.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/QuartzCore-ECZD4386C0MXHULDQ2JFHGUM0.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/CoreImage-3WX2TK9SQ7HTI9MCI963CFW9M.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftUICore-5YM3CAC3OGJ9VZ5CJ4SWSRDS2.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/UIKit-A61PQMY92X5WCJ08S40OKQLF6.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/SwiftUI-14Q3GW94I63XHLTUILG27NXZ0.pcm
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ MiniGauge (in target 'MiniGauge' from project 'MiniGauge')
+
+EmitSwiftModule normal x86_64 (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 Compiling\ GaugeLink.swift,\ GaugeStore.swift,\ GaugesView.swift,\ Metric.swift,\ MiniGaugeApp.swift,\ MoreView.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/BLE/GaugeLink.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/App/GaugeStore.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/GaugesView.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Metric.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/App/MiniGaugeApp.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/MoreView.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/BLE/GaugeLink.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/App/GaugeStore.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/GaugesView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Metric.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/App/MiniGaugeApp.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/MoreView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 Compiling\ ActivityController.swift,\ CarView.swift,\ Components.swift,\ DashboardView.swift,\ DemoSource.swift,\ DirectData.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Activity/ActivityController.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/CarView.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/Components.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/DashboardView.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Demo/DemoSource.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/DirectData.swift (in target 'MiniGauge' from project 'MiniGauge')
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Activity/ActivityController.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/CarView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/Components.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/DashboardView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Demo/DemoSource.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/DirectData.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for MiniGauge (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftDriver\ Compilation\ Requirements MiniGauge normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGauge -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling GaugeLiveActivity.swift (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 Compiling\ ObdAdapterLink.swift,\ Protocol.swift,\ SettingsView.swift,\ TripLogger.swift,\ Units.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/BLE/ObdAdapterLink.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Protocol.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/SettingsView.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Logging/TripLogger.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Units.swift /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/BLE/ObdAdapterLink.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Protocol.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/SettingsView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Logging/TripLogger.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Units.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftMergeGeneratedHeaders /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/MiniGauge-Swift.h /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-Swift.h (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-swiftHeaderTool -arch x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-Swift.h -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/MiniGauge-Swift.h
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ObdAdapterLink.swift, Protocol.swift, SettingsView.swift, TripLogger.swift, Units.swift, GeneratedAssetSymbols.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftdoc (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.abi.json (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftsourceinfo (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftDriver\ Compilation MiniGaugeWidgets normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeWidgets -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal x86_64 Compiling\ DynoMath.swift,\ Elm.swift,\ EngineView.swift,\ GaugeActivityAttributes.swift,\ GaugeAdmin.swift,\ GaugeAdminViews.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/DynoMath.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Elm.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/EngineView.swift /Users/runner/work/Montage-ios/Montage-ios/Shared/GaugeActivityAttributes.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/GaugeAdmin.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/GaugeAdminViews.swift (in target 'MiniGauge' from project 'MiniGauge')
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/DynoMath.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/Elm.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/EngineView.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/Shared/GaugeActivityAttributes.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Model/GaugeAdmin.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Views/GaugeAdminViews.swift (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets.debug.dylib normal (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -filelist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.LinkFileList -install_name @rpath/MiniGaugeWidgets.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/../../Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_dependency_info.dat -fapplication-extension -fobjc-link-runtime -L/Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.swiftmodule @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets-linker-args.resp -Xlinker -alias -Xlinker _NSExtensionMain -Xlinker ___debug_main_executable_dylib_entry_point -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets.debug.dylib
+
+SwiftDriverJobDiscovery normal x86_64 Compiling GaugeLink.swift, GaugeStore.swift, GaugesView.swift, Metric.swift, MiniGaugeApp.swift, MoreView.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+ConstructStubExecutorLinkFileList /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-ExecutorLinkFileList-normal-x86_64.txt (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    construct-stub-executor-link-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets.debug.dylib /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-ExecutorLinkFileList-normal-x86_64.txt
+note: Using stub executor library with Swift entry point. (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets normal (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/../../Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibPath-normal-x86_64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_entry -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugEntryPoint-normal-x86_64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-DebugDylibInstallName-normal-x86_64.txt -Xlinker -filelist -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets-ExecutorLinkFileList-normal-x86_64.txt /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets.debug.dylib -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets
+
+ExtractAppIntentsMetadata (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name MiniGaugeWidgets --sdk-root /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 18.0 --bundle-identifier com.minigauge.app.widgets --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex --target-triple x86_64-apple-ios18.0-simulator --binary-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/MiniGaugeWidgets --dependency-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets_dependency_info.dat --stringsdata-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftFileList --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/Objects-normal/x86_64/MiniGaugeWidgets.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-20 16:51:49.345 appintentsmetadataprocessor[8828:27401] Starting appintentsmetadataprocessor export
+2026-11-20 16:51:49.915 appintentsmetadataprocessor[8828:27401] Extracted no relevant App Intents symbols, skipping writing output
+
+LinkAssetCatalog /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Assets.xcassets (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-linkAssetCatalog --thinned /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app --plist-output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/AppIcon76x76@2x~ipad.png (in target 'MiniGauge' from project 'MiniGauge')
+note: Emplaced /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Assets.car (in target 'MiniGauge' from project 'MiniGauge')
+note: Emplaced /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/AppIcon60x60@2x.png (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftDriver MiniGaugeTests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-SwiftDriver -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeTests -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+AppIntentsSSUTraining (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/Info.plist --temp-dir-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/ssu --bundle-id com.minigauge.app.widgets --product-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex --extracted-metadata-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex/Metadata.appintents --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeWidgets.build/MiniGaugeWidgets.DependencyMetadataFileList --archive-ssu-assets
+2026-11-20 16:51:49.981 appintentsnltrainingprocessor[8829:27425] Parsing options for appintentsnltrainingprocessor
+2026-11-20 16:51:49.983 appintentsnltrainingprocessor[8829:27425] No AppShortcuts found - Skipping.
+
+RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex
+
+Touch /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex (in target 'MiniGaugeWidgets' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /usr/bin/touch -c /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/libXCTestSwiftSupport.dylib /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/__preview.dylib normal (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -install_name @rpath/MiniGauge.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_dependency_info.dat -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/__preview.dylib
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/libXCTestBundleInject.dylib /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestBundleInject.dylib (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestBundleInject.dylib /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCUnit.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCUIAutomation.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCTestSupport.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCTestCore.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCTest.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/XCTAutomationSupport.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks/Testing.framework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-8W4S4YWUEUWWCARDMQ7EUAMG8.pcm
+
+SwiftExplicitDependencyGeneratePcm x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-1K4FYGUF945TI372UYF5KKSAX.pcm
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCUIAutomation-1UU7KB1V5UJHC.swiftmodule
+
+SwiftExplicitDependencyCompileModuleFromInterface x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules/XCTest-3P8A3AMR106U0.swiftmodule
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ MiniGaugeTests (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+EmitSwiftModule normal x86_64 (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 Compiling\ ProtocolTests.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/ProtocolTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/ProtocolTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 Compiling\ UnitsTests.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/UnitsTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/UnitsTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftDriverJobDiscovery normal x86_64 Emitting module for MiniGaugeTests (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftDriver\ Compilation\ Requirements MiniGaugeTests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeTests -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling UnitsTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 Compiling\ AdminTests.swift,\ DynoTests.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/AdminTests.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/DynoTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/AdminTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/DynoTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftMergeGeneratedHeaders /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources/MiniGaugeTests-Swift.h /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-Swift.h (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-swiftHeaderTool -arch x86_64 /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-Swift.h -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources/MiniGaugeTests-Swift.h
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ProtocolTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftdoc (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftdoc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.abi.json (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.abi.json /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/x86_64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftsourceinfo (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftsourceinfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeTests.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal x86_64 Compiling\ ElmTests.swift /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/ElmTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftCompile normal x86_64 /Users/runner/work/Montage-ios/Montage-ios/MiniGaugeTests/ElmTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    
+
+SwiftDriverJobDiscovery normal x86_64 Compiling AdminTests.swift, DynoTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ElmTests.swift (in target 'MiniGaugeTests' from project 'MiniGauge')
+
+SwiftDriver\ Compilation MiniGaugeTests normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGaugeTests -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal x86_64 Compiling ActivityController.swift, CarView.swift, Components.swift, DashboardView.swift, DemoSource.swift, DirectData.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftDriverJobDiscovery normal x86_64 Compiling DynoMath.swift, Elm.swift, EngineView.swift, GaugeActivityAttributes.swift, GaugeAdmin.swift, GaugeAdminViews.swift (in target 'MiniGauge' from project 'MiniGauge')
+
+SwiftDriver\ Compilation MiniGauge normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-Swift-Compilation -- /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name MiniGauge -Onone -enforce-exclusivity\=checked @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target x86_64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/SDKStatCaches.noindex/iphonesimulator26.2-23C57-e244bd9a5feaf902f95f61bf06266e52.sdkstatcache -output-file-map /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-generated-files.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-own-target-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-project-headers.hmap -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources-normal/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources/x86_64 -Xcc -I/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-Swift.h -working-directory /Users/runner/work/Montage-ios/Montage-ios -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib normal (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -filelist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.LinkFileList -install_name @rpath/MiniGauge.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.swiftmodule @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge-linker-args.resp -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib
+
+ConstructStubExecutorLinkFileList /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-ExecutorLinkFileList-normal-x86_64.txt (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    construct-stub-executor-link-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-ExecutorLinkFileList-normal-x86_64.txt
+note: Using stub executor library with Swift entry point. (in target 'MiniGauge' from project 'MiniGauge')
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge normal (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibPath-normal-x86_64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-DebugDylibInstallName-normal-x86_64.txt -Xlinker -filelist -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge-ExecutorLinkFileList-normal-x86_64.txt /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge
+
+Copy /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeWidgets.appex /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks -remove-static-executable /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGaugeWidgets.appex /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns
+
+ProcessInfoPlistFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Info.plist /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Info.plist (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-infoPlistUtility /Users/runner/work/Montage-ios/Montage-ios/MiniGauge/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeWidgets.appex -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Info.plist
+
+CopySwiftLibs /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/SystemExtensions --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+ExtractAppIntentsMetadata (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name MiniGauge --sdk-root /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 18.0 --bundle-identifier com.minigauge.app --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app --target-triple x86_64-apple-ios18.0-simulator --binary-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge --dependency-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge_dependency_info.dat --stringsdata-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftFileList --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/Objects-normal/x86_64/MiniGauge.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-20 16:52:07.551 appintentsmetadataprocessor[9746:29691] Starting appintentsmetadataprocessor export
+2026-11-20 16:52:07.556 appintentsmetadataprocessor[9746:29691] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+ValidateEmbeddedBinary /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeWidgets.appex (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/usr/bin/embeddedBinaryValidationUtility /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeWidgets.appex -info-plist-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Info.plist
+
+AppIntentsSSUTraining (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Info.plist --temp-dir-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/ssu --bundle-id com.minigauge.app --product-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app --extracted-metadata-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/Metadata.appintents --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGauge.build/MiniGauge.DependencyMetadataFileList --archive-ssu-assets
+2026-11-20 16:52:07.600 appintentsnltrainingprocessor[9748:29693] Parsing options for appintentsnltrainingprocessor
+2026-11-20 16:52:07.602 appintentsnltrainingprocessor[9748:29693] No AppShortcuts found - Skipping.
+
+ProcessInfoPlistFile /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Info.plist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/empty-MiniGaugeTests.plist (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-infoPlistUtility /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/empty-MiniGaugeTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -format binary -platform iphonesimulator -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Info.plist
+
+Ld /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/MiniGaugeTests normal (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios18.0-simulator -bundle -isysroot /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -O0 -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -L/Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk/Developer/Library/Frameworks -filelist /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -bundle_loader /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge -Xlinker -object_path_lto -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.swiftmodule @/Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/MiniGauge.debug.dylib -o /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/MiniGaugeTests
+
+ExtractAppIntentsMetadata (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name MiniGaugeTests --sdk-root /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk --xcode-version 17C529 --platform-family iOS --deployment-target 18.0 --bundle-identifier com.minigauge.app.tests --output /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest --target-triple x86_64-apple-ios18.0-simulator --binary-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/MiniGaugeTests --dependency-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests_dependency_info.dat --stringsdata-file /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftFileList --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/Objects-normal/x86_64/MiniGaugeTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-20 16:52:08.541 appintentsmetadataprocessor[9759:29765] Starting appintentsmetadataprocessor export
+2026-11-20 16:52:08.545 appintentsmetadataprocessor[9759:29765] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/MiniGaugeTests --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Frameworks --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/PlugIns --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/SystemExtensions --scan-folder /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode_26.3.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+AppIntentsSSUTraining (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /Applications/Xcode_26.3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Info.plist --temp-dir-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/ssu --bundle-id com.minigauge.app.tests --product-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest --extracted-metadata-path /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest/Metadata.appintents --metadata-file-list /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Intermediates.noindex/MiniGauge.build/Debug-iphonesimulator/MiniGaugeTests.build/MiniGaugeTests.DependencyMetadataFileList --archive-ssu-assets
+2026-11-20 16:52:08.577 appintentsnltrainingprocessor[9760:29768] Parsing options for appintentsnltrainingprocessor
+2026-11-20 16:52:08.579 appintentsnltrainingprocessor[9760:29768] No AppShortcuts found - Skipping.
+
+RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest
+
+Touch /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest (in target 'MiniGaugeTests' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /usr/bin/touch -c /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app/PlugIns/MiniGaugeTests.xctest
+
+RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-RegisterExecutionPolicyException /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app
+
+Validate /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    builtin-validationUtility /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app -shallow-bundle -infoplist-subpath Info.plist
+
+Touch /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app (in target 'MiniGauge' from project 'MiniGauge')
+    cd /Users/runner/work/Montage-ios/Montage-ios
+    /usr/bin/touch -c /Users/runner/work/Montage-ios/Montage-ios/build/sim/Build/Products/Debug-iphonesimulator/MiniGauge.app
+
+2026-11-20 16:57:24.702758+0000 MiniGauge[12505:40998] [CoreBluetooth] XPC connection invalid
+Test Suite 'All tests' started at 2026-11-20 16:57:37.388.
+Test Suite 'MiniGaugeTests.xctest' started at 2026-11-20 16:57:37.390.
+Test Suite 'AdminTests' started at 2026-11-20 16:57:37.391.
+Test Case '-[MiniGaugeTests.AdminTests testConfigWithEscapedLabel]' started.
+Test Case '-[MiniGaugeTests.AdminTests testConfigWithEscapedLabel]' passed (0.032 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testEngineRunDetector]' started.
+Test Case '-[MiniGaugeTests.AdminTests testEngineRunDetector]' passed (0.003 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testFileChunk]' started.
+Test Case '-[MiniGaugeTests.AdminTests testFileChunk]' passed (0.011 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testFilesThemesDynoCarPids]' started.
+Test Case '-[MiniGaugeTests.AdminTests testFilesThemesDynoCarPids]' passed (0.033 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testFourZones]' started.
+Test Case '-[MiniGaugeTests.AdminTests testFourZones]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testQueryEncodingAndSplitting]' started.
+Test Case '-[MiniGaugeTests.AdminTests testQueryEncodingAndSplitting]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testReplies]' started.
+Test Case '-[MiniGaugeTests.AdminTests testReplies]' passed (0.009 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testSettingsFromTheGauge]' started.
+Test Case '-[MiniGaugeTests.AdminTests testSettingsFromTheGauge]' passed (0.007 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testWifiSwitchedOffPendingRestart]' started.
+Test Case '-[MiniGaugeTests.AdminTests testWifiSwitchedOffPendingRestart]' passed (0.007 seconds).
+Test Case '-[MiniGaugeTests.AdminTests testWiringNamesFromTheLcd21]' started.
+Test Case '-[MiniGaugeTests.AdminTests testWiringNamesFromTheLcd21]' passed (0.014 seconds).
+Test Suite 'AdminTests' passed at 2026-11-20 16:57:37.822.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.123 (0.431) seconds
+Test Suite 'DynoTests' started at 2026-11-20 16:57:37.823.
+Test Case '-[MiniGaugeTests.DynoTests testFailures]' started.
+Test Case '-[MiniGaugeTests.DynoTests testFailures]' passed (0.005 seconds).
+Test Case '-[MiniGaugeTests.DynoTests testPullMatchesTheWebPage]' started.
+Test Case '-[MiniGaugeTests.DynoTests testPullMatchesTheWebPage]' passed (0.012 seconds).
+Test Case '-[MiniGaugeTests.DynoTests testTimesNeedAStandingStart]' started.
+Test Case '-[MiniGaugeTests.DynoTests testTimesNeedAStandingStart]' passed (0.007 seconds).
+Test Suite 'DynoTests' passed at 2026-11-20 16:57:37.852.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.024 (0.029) seconds
+Test Suite 'ElmTests' started at 2026-11-20 16:57:37.854.
+Test Case '-[MiniGaugeTests.ElmTests testCodesRequestAndDroppedPid]' started.
+Test Case '-[MiniGaugeTests.ElmTests testCodesRequestAndDroppedPid]' passed (0.021 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testDecode]' started.
+Test Case '-[MiniGaugeTests.ElmTests testDecode]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testDirectFrames]' started.
+Test Case '-[MiniGaugeTests.ElmTests testDirectFrames]' passed (0.019 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testProtocolLadderThenRetry]' started.
+Test Case '-[MiniGaugeTests.ElmTests testProtocolLadderThenRetry]' passed (0.014 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testReplyLines]' started.
+Test Case '-[MiniGaugeTests.ElmTests testReplyLines]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testSavedProtocolFirstAndKeyOff]' started.
+Test Case '-[MiniGaugeTests.ElmTests testSavedProtocolFirstAndKeyOff]' passed (0.009 seconds).
+Test Case '-[MiniGaugeTests.ElmTests testWakeAndPoll]' started.
+Test Case '-[MiniGaugeTests.ElmTests testWakeAndPoll]' passed (0.010 seconds).
+Test Suite 'ElmTests' passed at 2026-11-20 16:57:51.806.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.080 (13.953) seconds
+Test Suite 'ProtocolTests' started at 2026-11-20 16:57:51.808.
+Test Case '-[MiniGaugeTests.ProtocolTests testBadFrames]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testBadFrames]' passed (0.008 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testEngine]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testEngine]' passed (0.006 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testGauges]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testGauges]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testGaugesZoneIndex]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testGaugesZoneIndex]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testInfo]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testInfo]' passed (0.025 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testStatus]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testStatus]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testText]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testText]' passed (0.504 seconds).
+Test Case '-[MiniGaugeTests.ProtocolTests testTextChunks]' started.
+Test Case '-[MiniGaugeTests.ProtocolTests testTextChunks]' passed (0.004 seconds).
+Test Suite 'ProtocolTests' passed at 2026-11-20 16:57:52.378.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.557 (0.570) seconds
+Test Suite 'UnitsTests' started at 2026-11-20 16:57:52.379.
+Test Case '-[MiniGaugeTests.UnitsTests testBoostLearnsBaro]' started.
+Test Case '-[MiniGaugeTests.UnitsTests testBoostLearnsBaro]' passed (0.005 seconds).
+Test Case '-[MiniGaugeTests.UnitsTests testCSV]' started.
+Test Case '-[MiniGaugeTests.UnitsTests testCSV]' passed (0.005 seconds).
+Test Case '-[MiniGaugeTests.UnitsTests testDerived]' started.
+Test Case '-[MiniGaugeTests.UnitsTests testDerived]' passed (0.004 seconds).
+Test Case '-[MiniGaugeTests.UnitsTests testFormatting]' started.
+Test Case '-[MiniGaugeTests.UnitsTests testFormatting]' passed (0.004 seconds).
+Test Suite 'UnitsTests' passed at 2026-11-20 16:57:52.404.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.017 (0.025) seconds
+Test Suite 'MiniGaugeTests.xctest' passed at 2026-11-20 16:57:52.405.
+	 Executed 32 tests, with 0 failures (0 unexpected) in 0.802 (15.015) seconds
+Test Suite 'All tests' passed at 2026-11-20 16:57:52.416.
+	 Executed 32 tests, with 0 failures (0 unexpected) in 0.802 (15.028) seconds
+2026-11-20 16:58:00.782 xcodebuild[6948:22563] [MT] IDETestOperationsObserverDebug: 351.203 elapsed -- Testing started completed.
+2026-11-20 16:58:00.782 xcodebuild[6948:22563] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-20 16:58:00.783 xcodebuild[6948:22563] [MT] IDETestOperationsObserverDebug: 351.203 sec, +351.203 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Montage-ios/Montage-ios/build/sim/Logs/Test/Test-MiniGauge-2026.11.20_16-50-35-+0000.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started
