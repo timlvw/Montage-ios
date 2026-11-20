@@ -292,6 +292,7 @@ struct GaugeLayoutView: View {
     private var store: GaugeStore { GaugeStore.shared }
     @StateObject private var m = LayoutModel()
     @State private var openSlot = false
+    @State private var askAllZones = false
     // For the cloud build's screenshots: -slot N opens that gauge's editor at its zones.
     private static let shotSlot: Int? = {
         let a = ProcessInfo.processInfo.arguments
@@ -336,6 +337,9 @@ struct GaugeLayoutView: View {
                             }
                         } label: { Label("Add a gauge", systemImage: "plus.circle") }
                     }
+                    if c.slots.contains(where: { $0.zsaved != nil }) {
+                        Button { askAllZones = true } label: { Label("Default zones on all gauges", systemImage: "circle.dashed") }
+                    }
                 } header: { Text("Gauges (swipe through them on the gauge)") } footer: {
                     Text("Drag to reorder (Edit), swipe to remove. Up to 8.")
                 }
@@ -378,6 +382,12 @@ struct GaugeLayoutView: View {
         }
         .navigationTitle("Gauge layout")
         .toolbar { EditButton() }
+        .confirmationDialog("Default zones on all gauges?", isPresented: $askAllZones, titleVisibility: .visible) {
+            Button("Use default zones", role: .destructive) {
+                let n = m.config?.slots.count ?? 0
+                Task { await m.run(store, (0..<n).map { "slot i=\($0)&zdefault=1" }) }
+            }
+        } message: { Text("Replaces every gauge's zones with its value's defaults: your saved ones where you have them, else the built-in ones.") }
         .navigationDestination(isPresented: $openSlot) { SlotEditView(m: m, index: Self.shotSlot ?? 0, scrollToZones: true) }
         .onChange(of: m.config != nil) { _, loaded in if loaded, let s = Self.shotSlot, s < (m.config?.slots.count ?? 0) { openSlot = true } }
         .task { await m.load(store) }
