@@ -32,7 +32,10 @@ struct CarView: View {
                                 jobButton("Steering pump", 3, parked: true)
                                 jobButton("Find DSC", 4, parked: true)
                             }
-                            jobButton("Full address sweep (~6 min)", 5, parked: true)
+                            HStack {
+                                jobButton("Address sweep (~6 min)", 5, parked: true)
+                                jobButton("DS2 sweep (~2 min)", 6, parked: true)
+                            }
                         }
                     }
                     if !store.carText.isEmpty || store.carBusy {
