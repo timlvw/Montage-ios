@@ -12,7 +12,7 @@ struct DashboardView: View {
                     LazyVGrid(columns: cols, spacing: 10) {
                         MetricTile(metric: .rpm, size: 32)
                         MetricTile(metric: .gear, size: 32)
-                        MetricTile(metric: .speed, size: 32)
+                        MetricTile(metric: .speed, size: 32, sub: store.limitSub)
                     }
                     boostCard
                     Card(title: ignitionTitle) {

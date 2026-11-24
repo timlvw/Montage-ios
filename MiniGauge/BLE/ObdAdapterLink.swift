@@ -314,8 +314,9 @@ final class ObdAdapterLink: NSObject, CBCentralManagerDelegate, CBPeripheralDele
         let now = Date()
         applyUnits()
         guard isConnected else { return }       // linkDropped() has said so already
+        data.limit = store.limitForFrames
         let pids = Set(data.latest.keys)
-        let units = "\(data.tempF)\(data.mph)\(data.psi)"
+        let units = "\(data.tempF)\(data.mph)\(data.psi)" + (data.limit.map { "\($0.kmh)\($0.settings.amberOverKmh)\($0.settings.redOverKmh)\($0.settings.amberAlarm)\($0.settings.redAlarm)" } ?? "")
         if pids != lastInfoPids || units != lastInfoUnits || store.info == nil {
             lastInfoPids = pids
             lastInfoUnits = units

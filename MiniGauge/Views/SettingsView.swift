@@ -4,6 +4,40 @@ import ActivityKit
 struct SettingsView: View {
     @EnvironmentObject var store: GaugeStore
 
+    /// A speed margin in the display unit (whole mph or km/h), stored in km/h.
+    private func margin(_ kp: WritableKeyPath<LimitSettings, Double>) -> Binding<Int> {
+        let mph = store.units.mph
+        return Binding(get: { Int((mph ? store.limitSettings[keyPath: kp] / 1.609344 : store.limitSettings[keyPath: kp]).rounded()) },
+                       set: { store.limitSettings[keyPath: kp] = mph ? Double($0) * 1.609344 : Double($0) })
+    }
+
+    private var speedLimitSection: some View {
+        let unit = store.units.mph ? "mph" : "km/h"
+        return Section {
+            Toggle("Follow the road's speed limit", isOn: $store.limitSettings.on)
+            if store.limitSettings.on {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Now").font(.caption).foregroundStyle(Theme.muted)
+                    Text(store.limitNow.text(mph: store.units.mph))
+                }
+                Stepper(value: margin(\.amberOverKmh), in: 0...30) {
+                    LabeledContent("Amber from", value: "\(margin(\.amberOverKmh).wrappedValue) \(unit) over")
+                }
+                Stepper(value: margin(\.redOverKmh), in: margin(\.amberOverKmh).wrappedValue...40) {
+                    LabeledContent("Red from", value: "\(margin(\.redOverKmh).wrappedValue) \(unit) over")
+                }
+                Picker("Amber alarm", selection: $store.limitSettings.amberAlarm) {
+                    Text("Colour only").tag(0); Text("Warning").tag(1); Text("Critical").tag(2)
+                }
+                Picker("Red alarm", selection: $store.limitSettings.redAlarm) {
+                    Text("Colour only").tag(0); Text("Warning").tag(1); Text("Critical").tag(2)
+                }
+            }
+        } header: { Text("Speed limit") } footer: {
+            Text("The phone finds the road you're on (GPS) and its limit from OpenStreetMap, and the speed gauge's zones follow it: green up to the amber margin over the limit, amber, then red. A road with no limit recorded shows \"?\" and the gauge's own zones. Roads are downloaded as you drive and kept on the phone for 30 days. Needs location for MiniGauge (it keeps running with the phone locked while connected). Not every road has a limit recorded, and it can pick the wrong road at junctions: a reminder, not gospel.")
+        }
+    }
+
     var body: some View {
         Form {
             Section("Units") {
@@ -30,6 +64,7 @@ struct SettingsView: View {
                     Text("The gauge reads the car (K-line, BMW mode) and streams everything to the phone.")
                 }
             }
+            speedLimitSection
             Section {
                 Toggle("Keep the screen on while connected", isOn: $store.keepAwake)
                 Toggle("Demo data (no gauge needed)", isOn: $store.demoMode)

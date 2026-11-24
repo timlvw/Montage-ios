@@ -15,7 +15,10 @@ struct GaugesView: View {
                     }
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(store.gauges) { g in
-                            ArcGauge(slot: store.info?.slots.first { $0.i == g.slot }, value: g, fallbackName: String(format: "PID %02X", g.pid))
+                            let raw = store.info?.slots.first { $0.i == g.slot }
+                            let slot = store.liveSlot(raw)          // the speed gauge follows the road's limit
+                            ArcGauge(slot: slot, value: store.liveValue(g, slot: slot), fallbackName: String(format: "PID %02X", g.pid),
+                                     sign: store.limitSign(for: raw))
                         }
                     }
                 }

@@ -163,6 +163,7 @@ struct ArcGauge: View {
     var slot: GaugeInfo.Slot?
     var value: GaugeSlotValue?
     var fallbackName: String
+    var sign: String? = nil              // speed-limit sign: the limit, or "?"
 
     var body: some View {
         let mn = slot?.min ?? 0, mx = max(slot?.max ?? 100, mn + 1)
@@ -200,6 +201,7 @@ struct ArcGauge: View {
                     }
                 }
                 .frame(height: 120)
+                .overlay(alignment: .topTrailing) { if let s = sign { LimitSign(text: s) } }
                 .padding(.horizontal, 8)
                 Text(slot?.name ?? fallbackName)
                     .font(.subheadline.weight(.medium))
@@ -209,6 +211,25 @@ struct ArcGauge: View {
             }
             .frame(maxWidth: .infinity)
         }
+    }
+}
+
+/// A small US-style SPEED LIMIT sign.
+struct LimitSign: View {
+    var text: String
+    var body: some View {
+        VStack(spacing: 0) {
+            Text("SPEED").font(.system(size: 6, weight: .bold))
+            Text("LIMIT").font(.system(size: 6, weight: .bold))
+            Text(text).font(.system(size: 15, weight: .bold, design: .rounded)).monospacedDigit()
+        }
+        .foregroundStyle(.black)
+        .padding(.horizontal, 4)
+        .padding(.vertical, 3)
+        .frame(minWidth: 30)
+        .background(RoundedRectangle(cornerRadius: 4).fill(.white))
+        .overlay(RoundedRectangle(cornerRadius: 4).inset(by: 1.5).stroke(.black, lineWidth: 1))
+        .accessibilityLabel(text == "?" ? "Speed limit unknown" : "Speed limit \(text)")
     }
 }
 

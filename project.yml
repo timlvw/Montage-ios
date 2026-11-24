@@ -37,6 +37,9 @@ targets:
         NSBluetoothAlwaysUsageDescription: MiniGauge connects to your gauge cluster, or straight to your OBD adapter, over Bluetooth to show live engine data.
         UIBackgroundModes:
           - bluetooth-central
+          - location
+        NSLocationWhenInUseUsageDescription: MiniGauge uses your location while driving to look up the current road's speed limit, so the speed gauge's zones follow it. Only when "Follow the road's speed limit" is on.
+        NSLocationAlwaysAndWhenInUseUsageDescription: MiniGauge uses your location while driving to look up the current road's speed limit, so the speed gauge's zones follow it. Only when "Follow the road's speed limit" is on.
         NSSupportsLiveActivities: true
         UIFileSharingEnabled: true
         LSSupportsOpeningDocumentsInPlace: true

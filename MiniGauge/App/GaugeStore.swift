@@ -57,12 +57,21 @@ final class GaugeStore: ObservableObject {
     @Published var autoLog: Bool { didSet { save("autoLog", autoLog) } }      // record a trip log while the engine runs
     @Published var demoMode: Bool { didSet { save("demoMode", demoMode); restartSource() } }
     @Published var source: DataSource { didSet { save("source", source.rawValue); if source != oldValue { restartSource() } } }
+    /// Speed limit from the road (More → Settings): the speed gauge's zones follow it.
+    @Published var limitSettings: LimitSettings {
+        didSet {
+            if let d = try? JSONEncoder().encode(limitSettings) { UserDefaults.standard.set(d, forKey: "limitSettings") }
+            if limitSettings != oldValue { speedLimit.settingsChanged() }
+        }
+    }
+    @Published var limitNow: LimitStatus = .off
     @Published var dyno: DynoSettings { didSet { if let d = try? JSONEncoder().encode(dyno) { UserDefaults.standard.set(d, forKey: "dyno") } } }
     @Published private(set) var logging = false
 
     private(set) var boost = BoostTracker()
     private let link = GaugeLink()
     private let adapter = ObdAdapterLink()
+    private let speedLimit = SpeedLimitService()
     private var savedUnits = ""
     private let activity = ActivityController()
     private let logger = TripLogger()
@@ -88,11 +97,14 @@ final class GaugeStore: ObservableObject {
         if let data = d.data(forKey: "dyno"), let v = try? JSONDecoder().decode(DynoSettings.self, from: data) { dyno = v }
         else { dyno = DynoSettings() }
         source = DataSource(rawValue: d.string(forKey: "source") ?? "") ?? .gauge
+        if let data = d.data(forKey: "limitSettings"), let v = try? JSONDecoder().decode(LimitSettings.self, from: data) { limitSettings = v }
+        else { limitSettings = LimitSettings() }
         // for the cloud build's screenshots: -source adapter
         let args = ProcessInfo.processInfo.arguments
         if let i = args.firstIndex(of: "-source"), i + 1 < args.count, let s = DataSource(rawValue: args[i + 1]) { source = s }
         link.store = self
         adapter.store = self
+        speedLimit.store = self
     }
 
     private func save(_ key: String, _ v: Any) { UserDefaults.standard.set(v, forKey: key) }
@@ -151,6 +163,61 @@ final class GaugeStore: ObservableObject {
     }
 
     func forgetAdapter() { adapter.forget() }
+
+    // MARK: - speed limit
+
+    /// A limit command for the gauge, quietly (no "not connected" notice).
+    func sendLimit(_ cmd: String) {
+        guard !isAdapter, !demoMode, conn == .connected else { return }
+        _ = link.send(cmd)
+    }
+
+    /// The known limit, for zones made on the phone (direct mode, and the
+    /// speed gauge drawn from the gauge's info).
+    var limitForFrames: (kmh: Double, settings: LimitSettings)? {
+        guard limitSettings.on, case .known(let k, _) = limitNow else { return nil }
+        return (k, limitSettings)
+    }
+
+    /// "Limit 45" under the Dash's speed, while the lookup is on.
+    var limitSub: String? {
+        guard limitSettings.on else { return nil }
+        switch limitNow {
+        case .known(let k, _): return "Limit " + String(LimitStatus.format(k, mph: units.mph).split(separator: " ")[0])
+        case .unknown, .offline: return "Limit ?"
+        default: return nil
+        }
+    }
+
+    /// A gauge slot as it looks now: the speed gauge's zones follow the
+    /// road's limit (the gauge does the same on its own screen). In direct
+    /// mode DirectData has already done it.
+    func liveSlot(_ slot: GaugeInfo.Slot?) -> GaugeInfo.Slot? {
+        guard var s = slot, !isAdapter, s.pid == 0x0D, let l = limitForFrames else { return slot }
+        let mph = s.unit.lowercased().contains("mph")
+        s.zones = LimitZones.zones(limitKmh: l.kmh, l.settings, toDisplay: { mph ? $0 / 1.609344 : $0 }, rangeMin: s.min, rangeMax: s.max)
+        return s
+    }
+
+    /// The value's zone in that live slot (for its colour).
+    func liveValue(_ v: GaugeSlotValue, slot: GaugeInfo.Slot?) -> GaugeSlotValue {
+        guard let s = slot, !isAdapter, s.pid == 0x0D, limitForFrames != nil, v.valid else { return v }
+        var o = v
+        o.zone = LimitZones.index(s.zones, rangeMin: s.min, v.value).map { s.zones[$0].z ?? $0 }
+        return o
+    }
+
+    /// The sign on the phone's speed gauge.
+    func limitSign(for slot: GaugeInfo.Slot?) -> String? {
+        guard slot?.pid == 0x0D, limitSettings.on else { return nil }
+        switch limitNow {
+        case .known(let k, _):
+            let mph = slot?.unit.lowercased().contains("mph") ?? units.mph
+            return "\(Int((mph ? k / 1.609344 : k).rounded()))"
+        case .unknown, .offline: return "?"
+        default: return nil
+        }
+    }
     func setDirectInfo(_ i: GaugeInfo) { info = i }
     func lastNoticeFromLink(_ s: String) { lastNotice = s }
 
@@ -167,11 +234,13 @@ final class GaugeStore: ObservableObject {
         if conn == c { return }
         conn = c
         applyIdleTimer()
+        speedLimit.refresh()              // the lookup runs only while something is connected
     }
 
     func linkReady() {
         send(Self.timeCommand())          // the gauge has no clock battery: set it on every connect
         send("info")
+        speedLimit.resend()
         Task { await syncDynoCar() }
     }
 

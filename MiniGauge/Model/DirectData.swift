@@ -69,6 +69,9 @@ struct DirectData {
     var tempF = true, mph = true, psi = false
     var linkText = ""
     var running = false            // the engine computer is answering
+    /// The road's speed limit (km/h) and the owner's margins: the speed
+    /// gauge's zones follow it, as on the gauge (speed_limit.cpp).
+    var limit: (kmh: Double, settings: LimitSettings)?
     var mil: Bool?
     var dtcCount: Int?
     var codes: [String] = []
@@ -136,11 +139,23 @@ struct DirectData {
     /// Gauges for the values this engine computer has answered.
     private var shown: [Def] { Self.defs.filter { latest[$0.pid] != nil } }
 
+    /// A gauge's zones in base units: the speed gauge's follow the road's limit.
+    func zones(_ d: Def) -> [Zone] {
+        guard d.pid == 0x0D, let l = limit, l.kmh > 0 else { return d.zones }
+        let s = l.settings
+        let a = l.kmh + s.amberOverKmh, r = l.kmh + max(s.redOverKmh, s.amberOverKmh), top = max(d.max, r + 1)
+        if r > a {
+            return [Zone(from: d.min, to: a, color: Self.green, alarm: 0), Zone(from: a, to: r, color: Self.amber, alarm: s.amberAlarm),
+                    Zone(from: r, to: top, color: Self.red, alarm: s.redAlarm)]
+        }
+        return [Zone(from: d.min, to: a, color: Self.green, alarm: 0), Zone(from: a, to: top, color: Self.red, alarm: s.redAlarm)]
+    }
+
     func info() -> GaugeInfo {
         let slots = shown.enumerated().map { i, d in
             GaugeInfo.Slot(i: i, pid: Int(d.pid), key: d.key, name: d.name, unit: unit(d), d: d.uclass == .pressure && psi ? 1 : d.d,
                            min: display(d, d.min), max: display(d, d.max),
-                           zones: d.zones.enumerated().map { k, z in
+                           zones: zones(d).enumerated().map { k, z in
                                GaugeInfo.Zone(from: display(d, z.from), to: display(d, z.to), crit: z.alarm == 2, color: z.color, z: k, al: z.alarm)
                            })
         }
@@ -153,8 +168,9 @@ struct DirectData {
             guard let v = fresh(d.pid, t) else {
                 return GaugeSlotValue(slot: i, pid: Int(d.pid), valid: false, warn: false, critical: false, value: 0, ageMs: nil)
             }
-            let k = Self.zoneIndex(d.zones, min: d.min, v)
-            let al = k.map { d.zones[$0].alarm } ?? 0
+            let zs = zones(d)
+            let k = Self.zoneIndex(zs, min: d.min, v)
+            let al = k.map { zs[$0].alarm } ?? 0
             let age = Int(t.timeIntervalSince(latest[d.pid]!.at) * 1000)
             return GaugeSlotValue(slot: i, pid: Int(d.pid), valid: true, warn: al == 1, critical: al == 2,
                                   value: display(d, v), ageMs: max(0, age), zone: k)
@@ -169,8 +185,9 @@ struct DirectData {
         s.codes = codes
         // the worst zone alarm, as the gauge's alarm banner would show it
         for d in shown {
-            guard let v = fresh(d.pid, t), let k = Self.zoneIndex(d.zones, min: d.min, v) else { continue }
-            let al = d.zones[k].alarm
+            let zs = zones(d)
+            guard let v = fresh(d.pid, t), let k = Self.zoneIndex(zs, min: d.min, v) else { continue }
+            let al = zs[k].alarm
             if al > s.alarmLevel {
                 s.alarmLevel = al
                 s.alarmText = "\(d.name) \(String(format: "%.\(d.d)f", display(d, v))) \(unit(d))"
