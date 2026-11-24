@@ -134,6 +134,39 @@ final class SpeedLimitTests: XCTestCase {
         XCTAssertEqual(LimitZones.zones(limitKmh: 72.42, s, toDisplay: toMph, rangeMin: 0, rangeMax: 140).count, 2, "no amber step")
     }
 
+    func testEstimateForUnmarkedRoads() throws {
+        let elm = Road(id: 5, name: "Elm St", highway: "residential", oneway: 0, fwd: nil, bwd: nil, pts: [[42.0, -71.0], [42.0, -70.99]])
+        let ramp = Road(id: 6, name: nil, highway: "motorway_link", oneway: 1, fwd: nil, bwd: nil, pts: [[42.0, -71.0], [42.0, -70.99]])
+        var m = RoadMatcher()
+        let match = try XCTUnwrap(m.update(lat: 42.0, lon: -70.995, course: 90, speed: 10, accuracy: 5, roads: [elm]))
+        XCTAssertNil(match.limit(estimate: false), "off: no limit on the map stays unknown")
+        let est = try XCTUnwrap(match.limit(estimate: true))
+        XCTAssertEqual(est.kmh / 1.609344, 25, accuracy: 0.01)
+        XCTAssertTrue(est.guess)
+        var r = RoadMatcher()
+        XCTAssertNil(r.update(lat: 42.0, lon: -70.995, course: 90, speed: 10, accuracy: 5, roads: [ramp])?.limit(estimate: true), "ramps: no guess")
+        var mm = RoadMatcher()
+        let mapped = try XCTUnwrap(mm.update(lat: 42.0, lon: -70.995, course: 90, speed: 10, accuracy: 5, roads: [main])?.limit(estimate: true))
+        XCTAssertFalse(mapped.guess, "the map's limit wins over a guess")
+        XCTAssertEqual(mapped.kmh, 72.42, accuracy: 0.01)
+        XCTAssertEqual(LimitStatus.estimated(kmh: est.kmh, road: "Elm St", kind: "residential").text(mph: true),
+                       "About 25 mph on Elm St: no limit on the map, so a typical one for a residential road")
+        XCTAssertEqual(LimitStatus.estimated(kmh: est.kmh, road: "living street", kind: "living_street").text(mph: true),
+                       "About 25 mph: no limit on the map, so a typical one for a living street road")
+    }
+
+    func testOldSettingsStillLoad() throws {
+        // saved by the app before Estimate existed
+        let old = #"{"on":true,"amberOverKmh":4.8,"redOverKmh":12.9,"amberAlarm":1,"redAlarm":2}"#
+        let s = try JSONDecoder().decode(LimitSettings.self, from: Data(old.utf8))
+        XCTAssertTrue(s.on)
+        XCTAssertEqual(s.amberOverKmh, 4.8)
+        XCTAssertEqual(s.redAlarm, 2)
+        XCTAssertFalse(s.estimate)
+        var n = s; n.estimate = true
+        XCTAssertEqual(try JSONDecoder().decode(LimitSettings.self, from: JSONEncoder().encode(n)), n)
+    }
+
     func testDirectModeFollowsTheLimit() {
         var d = DirectData()
         d.running = true

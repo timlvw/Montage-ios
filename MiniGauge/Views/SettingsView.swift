@@ -20,6 +20,17 @@ struct SettingsView: View {
                     Text("Now").font(.caption).foregroundStyle(Theme.muted)
                     Text(store.limitNow.text(mph: store.units.mph))
                 }
+                if store.gaugeFollowsLimit == false {
+                    Label("The gauge's firmware is older than v5.13, so only the phone's speed gauge follows the limit. Update the gauge (its web page → Update) to v5.13.",
+                          systemImage: "exclamationmark.triangle")
+                        .font(.footnote).foregroundStyle(.orange)
+                }
+                Toggle(isOn: $store.limitSettings.estimate) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Estimate unmarked roads")
+                        Text("A typical US limit for the road type when the map has none").font(.caption).foregroundStyle(Theme.muted)
+                    }
+                }
                 Stepper(value: margin(\.amberOverKmh), in: 0...30) {
                     LabeledContent("Amber from", value: "\(margin(\.amberOverKmh).wrappedValue) \(unit) over")
                 }
@@ -34,7 +45,7 @@ struct SettingsView: View {
                 }
             }
         } header: { Text("Speed limit") } footer: {
-            Text("The phone finds the road you're on (GPS) and its limit from OpenStreetMap, and the speed gauge's zones follow it: green up to the amber margin over the limit, amber, then red. A road with no limit recorded shows \"?\" and the gauge's own zones. Roads are downloaded as you drive and kept on the phone for 30 days. Needs location for MiniGauge (it keeps running with the phone locked while connected). Not every road has a limit recorded, and it can pick the wrong road at junctions: a reminder, not gospel.")
+            Text("The phone finds the road you're on (GPS) and its limit from OpenStreetMap, and the speed gauge's zones follow it: green up to the amber margin over the limit, amber, then red. A road with no limit recorded shows \"?\" and the gauge's own zones, or, with Estimate on, a typical limit for that kind of road (residential 25, tertiary 35, secondary 40, primary 45, trunk 55, motorway 65 mph), shown as \"~\". Roads are downloaded as you drive and kept on the phone for 30 days. Needs location for MiniGauge (it keeps running with the phone locked while connected). Not every road has a limit recorded, and it can pick the wrong road at junctions: a reminder, not gospel.")
         }
     }
 

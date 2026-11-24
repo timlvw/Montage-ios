@@ -12,6 +12,62 @@ struct LimitSettings: Codable, Equatable {
     var redOverKmh = 16.09344         // 10 mph
     var amberAlarm = 0                // 0 colour only, 1 warning, 2 critical
     var redAlarm = 1
+    var estimate = false              // a typical limit for the road type when the map has none
+}
+
+extension LimitSettings {
+    enum CodingKeys: String, CodingKey { case on, amberOverKmh, redOverKmh, amberAlarm, redAlarm, estimate }
+
+    /// Settings saved by an older app lack the newer keys: keep the rest.
+    init(from decoder: Decoder) throws {
+        self.init()
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        on = try c.decodeIfPresent(Bool.self, forKey: .on) ?? on
+        amberOverKmh = try c.decodeIfPresent(Double.self, forKey: .amberOverKmh) ?? amberOverKmh
+        redOverKmh = try c.decodeIfPresent(Double.self, forKey: .redOverKmh) ?? redOverKmh
+        amberAlarm = try c.decodeIfPresent(Int.self, forKey: .amberAlarm) ?? amberAlarm
+        redAlarm = try c.decodeIfPresent(Int.self, forKey: .redAlarm) ?? redAlarm
+        estimate = try c.decodeIfPresent(Bool.self, forKey: .estimate) ?? estimate
+    }
+}
+
+/// Typical US limits by road type (mph), for a road with no limit on the map
+/// while Estimate is on. A guess, shown with "~"; links and ramps get none.
+enum EstimatedLimit {
+    static let mph: [String: Double] = ["motorway": 65, "trunk": 55, "primary": 45, "secondary": 40, "tertiary": 35,
+                                        "unclassified": 35, "residential": 25, "living_street": 15]
+    static func kmh(_ highway: String) -> Double? { mph[highway].map { $0 * 1.609344 } }
+}
+
+/// Where the speed-limit lookup stands, for Settings and the Dash.
+enum LimitStatus: Equatable {
+    case off
+    case noPermission                   // location refused for MiniGauge
+    case waiting(String)                // GPS, or the roads here downloading
+    case known(kmh: Double, road: String)
+    case estimated(kmh: Double, road: String, kind: String)   // no limit on the map: typical for the road type
+    case unknown(road: String?)         // on a road with no limit recorded, or none matched
+    case offline                        // couldn't download the roads here
+
+    func text(mph: Bool) -> String {
+        switch self {
+        case .off: return "Off"
+        case .noPermission: return "Location is off for MiniGauge: allow it in iPhone Settings → MiniGauge → Location."
+        case .waiting(let s): return s
+        case .known(let k, let road): return "\(Self.format(k, mph: mph)) on \(road)"
+        case .estimated(let k, let road, let kind):
+            let type = kind.replacingOccurrences(of: "_", with: " ")
+            let on = road == type ? "" : " on \(road)"
+            return "About \(Self.format(k, mph: mph))\(on): no limit on the map, so a typical one for a \(type) road"
+        case .unknown(let road?): return "No limit recorded for \(road)"
+        case .unknown(nil): return "Not on a known road"
+        case .offline: return "Couldn't download the roads here (no signal, or the map server is busy)"
+        }
+    }
+
+    static func format(_ kmh: Double, mph: Bool) -> String {
+        mph ? "\(Int((kmh / 1.609344).rounded())) mph" : "\(Int(kmh.rounded())) km/h"
+    }
 }
 
 /// The gauge command for a limit ("limit off" when switched off).
@@ -148,6 +204,14 @@ struct RoadMatcher {
         let forward: Bool             // travelling along the way's direction
         let distance: Double
         var limitKmh: Double? { forward ? road.fwd : road.bwd }
+
+        /// The limit to use: the map's, else (with `estimate`) a typical one
+        /// for the road type, flagged as a guess.
+        func limit(estimate: Bool) -> (kmh: Double, guess: Bool)? {
+            if let k = limitKmh { return (k, false) }
+            if estimate, let e = EstimatedLimit.kmh(road.highway) { return (e, true) }
+            return nil
+        }
     }
 
     private(set) var current: Match?

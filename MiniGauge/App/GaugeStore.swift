@@ -65,6 +65,10 @@ final class GaugeStore: ObservableObject {
         }
     }
     @Published var limitNow: LimitStatus = .off
+    /// Whether the connected gauge follows the limit (v5.13+): nil until it
+    /// answers a limit command. Older firmware answers "unknown command".
+    @Published private(set) var gaugeFollowsLimit: Bool?
+    private var oldFirmwareNoticeShown = false
     @Published var dyno: DynoSettings { didSet { if let d = try? JSONEncoder().encode(dyno) { UserDefaults.standard.set(d, forKey: "dyno") } } }
     @Published private(set) var logging = false
 
@@ -168,15 +172,34 @@ final class GaugeStore: ObservableObject {
 
     /// A limit command for the gauge, quietly (no "not connected" notice).
     func sendLimit(_ cmd: String) {
-        guard !isAdapter, !demoMode, conn == .connected else { return }
+        guard !isAdapter, !demoMode, conn == .connected, gaugeFollowsLimit != false else { return }
         _ = link.send(cmd)
+    }
+
+    /// The gauge's answer to a limit command: "ok" quietly. Firmware older
+    /// than v5.13 doesn't know the command: say so once, and stop sending it
+    /// to that gauge until it reconnects (a reflash restarts it).
+    private func limitReply(_ body: String) {
+        if body == "ok" { gaugeFollowsLimit = true; return }
+        if body.hasPrefix("unknown command") {
+            gaugeFollowsLimit = false
+            if !oldFirmwareNoticeShown {
+                oldFirmwareNoticeShown = true
+                lastNotice = "The gauge's firmware is older than v5.13, so it can't follow speed limits (the phone's speed gauge still does). Update the gauge to v5.13."
+            }
+            return
+        }
+        if !body.isEmpty { lastNotice = "Gauge: \(body)" }
     }
 
     /// The known limit, for zones made on the phone (direct mode, and the
     /// speed gauge drawn from the gauge's info).
     var limitForFrames: (kmh: Double, settings: LimitSettings)? {
-        guard limitSettings.on, case .known(let k, _) = limitNow else { return nil }
-        return (k, limitSettings)
+        guard limitSettings.on else { return nil }
+        switch limitNow {
+        case .known(let k, _), .estimated(let k, _, _): return (k, limitSettings)
+        default: return nil
+        }
     }
 
     /// "Limit 45" under the Dash's speed, while the lookup is on.
@@ -184,6 +207,7 @@ final class GaugeStore: ObservableObject {
         guard limitSettings.on else { return nil }
         switch limitNow {
         case .known(let k, _): return "Limit " + String(LimitStatus.format(k, mph: units.mph).split(separator: " ")[0])
+        case .estimated(let k, _, _): return "Limit ~" + String(LimitStatus.format(k, mph: units.mph).split(separator: " ")[0])
         case .unknown, .offline: return "Limit ?"
         default: return nil
         }
@@ -214,6 +238,9 @@ final class GaugeStore: ObservableObject {
         case .known(let k, _):
             let mph = slot?.unit.lowercased().contains("mph") ?? units.mph
             return "\(Int((mph ? k / 1.609344 : k).rounded()))"
+        case .estimated(let k, _, _):
+            let mph = slot?.unit.lowercased().contains("mph") ?? units.mph
+            return "~\(Int((mph ? k / 1.609344 : k).rounded()))"
         case .unknown, .offline: return "?"
         default: return nil
         }
@@ -247,6 +274,7 @@ final class GaugeStore: ObservableObject {
     func linkDropped() {
         carBusy = false
         carPoll?.invalidate()
+        gaugeFollowsLimit = nil           // it may come back with new firmware
         engine.link = .none
         engineRun.reset()
         if autoOwned && logging { toggleLogging() }      // no data any more: close the trip
@@ -331,6 +359,8 @@ final class GaugeStore: ObservableObject {
             dynoCSV = body
         case _ where cmd.hasPrefix("time "):
             break                             // clock set; nothing to show
+        case _ where cmd.hasPrefix("limit "):
+            limitReply(body)
         default:
             if cmd.hasPrefix("car ") {
                 if body == "started" { startCarPoll() } else { lastNotice = "Gauge: \(body)" }

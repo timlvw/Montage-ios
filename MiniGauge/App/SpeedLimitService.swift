@@ -1,32 +1,6 @@
 import Foundation
 import CoreLocation
 
-/// Where the speed-limit lookup stands, for Settings and the Dash.
-enum LimitStatus: Equatable {
-    case off
-    case noPermission                   // location refused for MiniGauge
-    case waiting(String)                // GPS, or the roads here downloading
-    case known(kmh: Double, road: String)
-    case unknown(road: String?)         // on a road with no limit recorded, or none matched
-    case offline                        // couldn't download the roads here
-
-    func text(mph: Bool) -> String {
-        switch self {
-        case .off: return "Off"
-        case .noPermission: return "Location is off for MiniGauge: allow it in iPhone Settings → MiniGauge → Location."
-        case .waiting(let s): return s
-        case .known(let k, let road): return "\(Self.format(k, mph: mph)) on \(road)"
-        case .unknown(let road?): return "No limit recorded for \(road)"
-        case .unknown(nil): return "Not on a known road"
-        case .offline: return "Couldn't download the roads here (no signal, or the map server is busy)"
-        }
-    }
-
-    static func format(_ kmh: Double, mph: Bool) -> String {
-        mph ? "\(Int((kmh / 1.609344).rounded())) mph" : "\(Int(kmh.rounded())) km/h"
-    }
-}
-
 /// Looks up the current road's speed limit (GPS + OpenStreetMap) and sends it
 /// to the gauge ("limit ..."), so its speed gauges' zones follow it. Runs only
 /// while the feature is on and the gauge (or the OBD adapter) is connected.
@@ -62,7 +36,9 @@ final class SpeedLimitService: NSObject, CLLocationManagerDelegate {
     /// Margins or alarms changed: tell the gauge at once.
     func settingsChanged() {
         lastCommand = ""
-        if running { send() } else { refresh() }
+        if running {
+            if let m = matcher.current { publish(m) } else { send() }     // Estimate may change the limit
+        } else { refresh() }
         if store?.limitSettings.on == false { store?.sendLimit("limit off") }
     }
 
@@ -97,7 +73,10 @@ final class SpeedLimitService: NSObject, CLLocationManagerDelegate {
         m.allowsBackgroundLocationUpdates = true          // keeps going with the phone locked (blue pill shows)
         m.showsBackgroundLocationIndicator = true
         m.startUpdatingLocation()
-        if case .known? = store?.limitNow {} else { store?.limitNow = .waiting("Waiting for GPS…") }
+        switch store?.limitNow {
+        case .known?, .estimated?: break
+        default: store?.limitNow = .waiting("Waiting for GPS…")
+        }
         keepAlive?.invalidate()
         keepAlive = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in self?.resend() }
     }
@@ -143,9 +122,15 @@ final class SpeedLimitService: NSObject, CLLocationManagerDelegate {
     }
 
     private func publish(_ m: RoadMatcher.Match?) {
-        limit = m?.limitKmh
+        let pick = m?.limit(estimate: store?.limitSettings.estimate == true)
+        limit = pick?.kmh
         if let m = m {
-            store?.limitNow = m.limitKmh.map { .known(kmh: $0, road: m.road.label) } ?? .unknown(road: m.road.label)
+            if let p = pick {
+                store?.limitNow = p.guess ? .estimated(kmh: p.kmh, road: m.road.label, kind: m.road.highway)
+                                          : .known(kmh: p.kmh, road: m.road.label)
+            } else {
+                store?.limitNow = .unknown(road: m.road.label)
+            }
         } else if case .offline? = store?.limitNow {
         } else {
             store?.limitNow = .unknown(road: nil)

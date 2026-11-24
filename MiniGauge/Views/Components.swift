@@ -229,7 +229,8 @@ struct LimitSign: View {
         .frame(minWidth: 30)
         .background(RoundedRectangle(cornerRadius: 4).fill(.white))
         .overlay(RoundedRectangle(cornerRadius: 4).inset(by: 1.5).stroke(.black, lineWidth: 1))
-        .accessibilityLabel(text == "?" ? "Speed limit unknown" : "Speed limit \(text)")
+        .accessibilityLabel(text == "?" ? "Speed limit unknown"
+                            : text.hasPrefix("~") ? "Speed limit about \(text.dropFirst())" : "Speed limit \(text)")
     }
 }
 
